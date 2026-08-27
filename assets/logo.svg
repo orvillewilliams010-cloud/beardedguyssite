@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none" role="img" aria-label="Bearded Guys Logo">
+  <!-- Razor icon -->
+  <g transform="translate(8, 10)">
+    <rect x="0" y="10" width="36" height="20" rx="4" fill="#c8a44a"/>
+    <rect x="4" y="14" width="28" height="12" rx="2" fill="#0d0d0d"/>
+    <rect x="36" y="15" width="8" height="10" rx="2" fill="#c8a44a"/>
+    <line x1="8" y1="20" x2="32" y2="20" stroke="#c8a44a" stroke-width="1.5"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="62" y="26" font-family="'Bebas Neue', sans-serif" font-size="20" letter-spacing="2" fill="#ffffff">BEARDED</text>
+  <text x="62" y="48" font-family="'Bebas Neue', sans-serif" font-size="20" letter-spacing="2" fill="#c8a44a">GUYS</text>
+</svg>

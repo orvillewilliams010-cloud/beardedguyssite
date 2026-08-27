@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Gallery Management — Bearded Guys Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <!-- ── Sidebar ─────────────────────────────────────────────── -->
+  <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin navigation">
+    <div class="admin-sidebar-logo">
+      <a href="index.html" aria-label="Go to public site">
+        <img src="assets/logo.svg" alt="Bearded Guys" width="160" height="38" />
+      </a>
+    </div>
+
+    <nav class="admin-nav" aria-label="Admin menu">
+      <a href="#upload" class="active" aria-current="page">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
+          <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+        </svg>
+        Upload Photos
+      </a>
+      <a href="#gallery-manage">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </svg>
+        Manage Gallery
+      </a>
+      <a href="index.html" target="_blank" rel="noopener">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        View Public Site
+      </a>
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <div class="admin-user-info">
+        <div class="admin-avatar" id="admin-avatar" aria-hidden="true">B</div>
+        <div>
+          <div class="admin-user-label">Logged in as</div>
+          <div class="admin-user-email" id="admin-email">Loading…</div>
+        </div>
+      </div>
+      <button class="btn-logout" id="logout-btn" type="button">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── Main ────────────────────────────────────────────────── -->
+  <div class="admin-main">
+
+    <!-- Top bar -->
+    <div class="admin-topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="admin-sidebar">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <h1 class="admin-topbar-title">Gallery Management</h1>
+      <div></div><!-- spacer -->
+    </div>
+
+    <div class="admin-content">
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-card-label">Total Photos</span>
+          <span class="stat-card-value" id="stat-count">—</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-label">Storage Used</span>
+          <span class="stat-card-value" id="stat-storage">—</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-label">Last Upload</span>
+          <span class="stat-card-value" id="stat-last" style="font-size:1.4rem;">—</span>
+        </div>
+      </div>
+
+      <!-- Upload section -->
+      <section class="upload-section" id="upload" aria-labelledby="upload-heading">
+        <h2 id="upload-heading">Upload New Photos</h2>
+
+        <div id="drop-zone" role="button" tabindex="0" aria-label="Click to browse files or drag and drop images here">
+          <svg class="dz-icon" width="52" height="52" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
+            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+          </svg>
+          <p class="dz-title">Drop images here</p>
+          <p class="dz-sub">or click to browse — JPG, PNG, WebP supported</p>
+          <button class="btn-upload" id="upload-btn" type="button">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            Choose Files
+          </button>
+        </div>
+
+        <input
+          type="file"
+          id="file-input"
+          name="photos"
+          accept="image/jpeg,image/png,image/webp,image/gif"
+          multiple
+          style="display:none"
+          aria-label="Select image files"
+        />
+
+        <div id="progress-wrap" hidden>
+          <label for="upload-progress">Uploading…</label>
+          <progress id="upload-progress" value="0" max="100"></progress>
+        </div>
+      </section>
+
+      <!-- Gallery management section -->
+      <section class="gallery-manage-section" id="gallery-manage" aria-labelledby="gallery-manage-heading">
+        <h2 id="gallery-manage-heading">Your Gallery</h2>
+        <div id="admin-gallery-grid" role="list" aria-label="Uploaded gallery images">
+          <p class="admin-loading">Loading images…</p>
+        </div>
+      </section>
+
+    </div><!-- /.admin-content -->
+  </div><!-- /.admin-main -->
+
+  <!-- Supabase credentials (git-ignored) -->
+  <script src="js/config.js"></script>
+
+  <!-- Admin module -->
+  <script type="module" src="js/admin.js"></script>
+
+  <!-- Sidebar toggle + avatar initial -->
+  <script type="module">
+    import { getSession } from './js/auth.js';
+
+    // Mobile sidebar toggle
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const sidebar   = document.getElementById('admin-sidebar');
+    toggleBtn?.addEventListener('click', () => {
+      const isOpen = sidebar.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 900 && !sidebar.contains(e.target) && e.target !== toggleBtn) {
+        sidebar.classList.remove('open');
+        toggleBtn?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Set avatar initial from email
+    const session = await getSession();
+    if (session) {
+      const email = session.user.email || '';
+      const avatar = document.getElementById('admin-avatar');
+      if (avatar) avatar.textContent = email.charAt(0).toUpperCase();
+    }
+
+    // Update stats after gallery loads
+    // We poll the grid after a short delay for simplicity
+    setTimeout(() => {
+      const cards = document.querySelectorAll('.admin-img-card');
+      const countEl = document.getElementById('stat-count');
+      const lastEl  = document.getElementById('stat-last');
+      if (countEl) countEl.textContent = cards.length;
+      if (lastEl && cards.length > 0) {
+        const today = new Date();
+        lastEl.textContent = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      }
+    }, 2000);
+  </script>
+
+</body>
+</html>

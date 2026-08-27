@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bearded Guys Barbershop — Premium cuts, fades, and beard grooming. Book your appointment today." />
+  <title>Bearded Guys Barbershop</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ────────────────────────────────────────── -->
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo" aria-label="Bearded Guys — home">
+          <img src="assets/logo.svg" alt="Bearded Guys logo" width="160" height="44" />
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact" class="btn btn-primary">Book Now</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ── Hero ──────────────────────────────────────────────── -->
+    <section class="hero" id="hero">
+      <div class="hero-bg" role="img" aria-label="Barbershop background"></div>
+      <div class="hero-content container">
+        <span class="hero-eyebrow">Premium Barbershop Experience</span>
+        <h1 class="hero-title">
+          Look Sharp.<br /><span>Feel Bold.</span>
+        </h1>
+        <p class="hero-sub">
+          Master cuts, precision fades, and expert beard grooming — crafted for the modern man.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Book an Appointment</a>
+          <a href="#gallery" class="btn btn-outline">See Our Work</a>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero-scroll" aria-hidden="true">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        Scroll
+      </div>
+    </section>
+
+    <!-- ── About ─────────────────────────────────────────────── -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image-wrap reveal">
+            <!-- Replace src with a real photo -->
+            <img
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80"
+              alt="Barber working on a client"
+              loading="lazy"
+              width="600"
+              height="750"
+            />
+          </div>
+
+          <div class="about-text reveal">
+            <h2 class="section-title" id="about-title">Your Barber.<br /><span>Your Story.</span></h2>
+            <div class="gold-divider"></div>
+            <p class="section-subtitle">
+              With over a decade behind the chair, we bring precision, style, and passion to every cut. 
+              We don't just cut hair — we build confidence.
+            </p>
+            <p style="color: var(--clr-muted); font-size: .95rem; line-height: 1.8;">
+              From classic tapers to modern skin fades and beard sculpting, every service is tailored to 
+              you. Walk in looking good. Walk out feeling unstoppable.
+            </p>
+
+            <div class="about-stat-row">
+              <div class="about-stat">
+                <span class="about-stat-num">10+</span>
+                <span class="about-stat-label">Years Experience</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat-num">5K+</span>
+                <span class="about-stat-label">Happy Clients</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat-num">100%</span>
+                <span class="about-stat-label">Satisfaction</span>
+              </div>
+            </div>
+
+            <a href="#contact" class="btn btn-primary" style="align-self: flex-start;">Book a Session</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Services ──────────────────────────────────────────── -->
+    <section class="services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <header class="services-header reveal">
+          <h2 class="section-title" id="services-title">Our <span>Services</span></h2>
+          <div class="gold-divider center"></div>
+          <p class="section-subtitle">Every service includes a hot towel finish and style consultation.</p>
+        </header>
+
+        <div class="services-grid">
+
+          <article class="service-card reveal">
+            <div class="service-icon">✂️</div>
+            <h3 class="service-name">Classic Cut</h3>
+            <p class="service-desc">Scissor or clipper cut, styled to perfection for any hair type.</p>
+            <span class="service-price">$30</span>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">⚡</div>
+            <h3 class="service-name">Skin Fade</h3>
+            <p class="service-desc">Precision fade from skin to length — sharp, clean, and seamless.</p>
+            <span class="service-price">$40</span>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">🧔</div>
+            <h3 class="service-name">Beard Sculpt</h3>
+            <p class="service-desc">Shape, line up, and condition your beard for a crisp, defined look.</p>
+            <span class="service-price">$25</span>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">💎</div>
+            <h3 class="service-name">Cut + Beard Combo</h3>
+            <p class="service-desc">Full haircut plus beard sculpt — the complete look, one session.</p>
+            <span class="service-price">$60</span>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">🪒</div>
+            <h3 class="service-name">Hot Towel Shave</h3>
+            <p class="service-desc">Traditional straight-razor shave with hot towel treatment.</p>
+            <span class="service-price">$35</span>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">👑</div>
+            <h3 class="service-name">VIP Package</h3>
+            <p class="service-desc">Cut + beard + hot towel shave + scalp massage. The full experience.</p>
+            <span class="service-price">$90</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Gallery ────────────────────────────────────────────── -->
+    <section class="gallery-section" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <header class="gallery-header reveal">
+          <h2 class="section-title" id="gallery-title">Our <span>Work</span></h2>
+          <div class="gold-divider center"></div>
+          <p class="section-subtitle">Every photo is a story of craft, style, and confidence.</p>
+        </header>
+        <div id="gallery-grid" role="list" aria-label="Gallery of barber work">
+          <p class="gallery-loading">Loading gallery...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ────────────────────────────────────────────── -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <h2 class="section-title" id="contact-title">Book Your <span>Session</span></h2>
+            <div class="gold-divider"></div>
+            <p class="section-subtitle">Ready for a fresh cut? Reach out or fill in the form and we'll get you scheduled.</p>
+
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">📍</div>
+              <div>
+                <div class="contact-item-label">Location</div>
+                <div class="contact-item-value">123 Main Street, Your City, ST 00000</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">📞</div>
+              <div>
+                <div class="contact-item-label">Phone</div>
+                <div class="contact-item-value"><a href="tel:+15550000000">(555) 000-0000</a></div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">📸</div>
+              <div>
+                <div class="contact-item-label">Instagram</div>
+                <div class="contact-item-value"><a href="https://instagram.com/beardedguys" target="_blank" rel="noopener">@beardedguys</a></div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">🕐</div>
+              <div>
+                <div class="contact-item-label">Hours</div>
+                <div class="contact-item-value">Tue–Sat: 9am – 7pm · Sun: 10am – 4pm</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal">
+            <form class="contact-form" name="booking" aria-label="Booking request form" novalidate>
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="John Smith" autocomplete="name" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email" required />
+              </div>
+              <div class="form-group">
+                <label for="service">Preferred Service</label>
+                <select id="service" name="service">
+                  <option value="">Select a service…</option>
+                  <option>Classic Cut — $30</option>
+                  <option>Skin Fade — $40</option>
+                  <option>Beard Sculpt — $25</option>
+                  <option>Cut + Beard Combo — $60</option>
+                  <option>Hot Towel Shave — $35</option>
+                  <option>VIP Package — $90</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Additional Notes</label>
+                <textarea id="message" name="message" placeholder="Any requests or preferred time slots…"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Booking Request</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; <span id="year"></span> Bearded Guys Barbershop. All rights reserved.</p>
+      <a href="login.html" class="footer-link">Owner Login</a>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ────────────────────────────────────────────── -->
+  <!-- Supabase credentials (git-ignored — copy config.example.js → config.js) -->
+  <script src="js/config.js"></script>
+
+  <!-- Gallery + scroll reveal -->
+  <script type="module">
+    import { loadGalleryImages } from './js/gallery.js';
+
+    // ── Load gallery ─────────────────────────────────────────
+    loadGalleryImages();
+
+    // ── Mobile nav toggle ─────────────────────────────────────
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    toggle?.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close nav on link click
+    navLinks?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle?.classList.remove('open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ── Scroll reveal ─────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Footer year ───────────────────────────────────────────
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // ── Contact form (stub — connect to Formspree, Netlify, etc.) ──
+    const form = document.querySelector('.contact-form');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thanks! We\'ll be in touch to confirm your booking.');
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
