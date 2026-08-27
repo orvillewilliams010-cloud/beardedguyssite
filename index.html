@@ -23,11 +23,11 @@
   <aside class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-bar-left">
-        <span class="live-status-badge">
-          <span class="live-dot"></span>
-          <span id="live-hours-text">OPEN TODAY • 9:30 AM – 7:00 PM</span>
+        <span class="status-badge-live">
+          <span class="status-dot"></span>
+          <span id="live-hours-badge">OPEN TODAY • 9:30 AM – 7:00 PM</span>
         </span>
-        <span>📍 2763 182 St SW, Edmonton, AB</span>
+        <span>📍 2763 182 St SW, Edmonton, AB T6W 4V2</span>
       </div>
       <div class="top-bar-right">
         <a href="tel:+17802446403">
@@ -35,17 +35,17 @@
           (780) 244-6403
         </a>
         <a href="https://share.google/1DQuSzHd6eY13LUKj" target="_blank" rel="noopener">
-          <span>⭐</span> 4.8★ on Google (250+ Reviews)
+          <span>★</span> 4.8 on Google (250+ Reviews)
         </a>
       </div>
     </div>
   </aside>
 
-  <!-- ── Main Sticky Navigation ──────────────────────────────────────── -->
+  <!-- ── Main Navigation ─────────────────────────────────────────────── -->
   <header class="site-nav" id="site-header">
     <div class="container nav-inner">
       <a href="#hero" class="nav-logo" aria-label="Bearded Guys Barber Shop">
-        <img src="assets/logo.svg" alt="Bearded Guys Barber Shop Logo" width="220" height="48" />
+        <img src="assets/logo.svg" alt="Bearded Guys Barber Shop Logo" width="220" height="44" />
       </a>
 
       <nav aria-label="Main menu">
@@ -63,7 +63,7 @@
           <span>⚡</span> Book on Fresha ↗
         </a>
 
-        <a href="login.html" class="nav-staff-link" title="Owner / Staff Portal" aria-label="Owner Login">
+        <a href="login.html" class="nav-portal-link" title="Owner / Staff Portal" aria-label="Owner Login">
           <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
           </svg>
@@ -82,12 +82,12 @@
 
     <!-- ── Hero Section ──────────────────────────────────────────────── -->
     <section class="hero-section" id="hero">
-      <div class="hero-bg-layer"></div>
-      <div class="hero-grid-pattern"></div>
+      <div class="hero-bg-media"></div>
+      <div class="hero-grid-lines"></div>
 
-      <div class="container hero-container">
-        <div class="hero-badge-pill">
-          <span>★</span> EDMONTON'S PREMIER BARBER SHOP • 4.8★ ON GOOGLE
+      <div class="container hero-content-wrap">
+        <div class="hero-badge">
+          <span>★</span> EDMONTON'S PREMIER BARBER STUDIO • 4.8★ ON GOOGLE
         </div>
 
         <h1 class="hero-title">
@@ -96,31 +96,31 @@
         </h1>
 
         <p class="hero-description">
-          Edmonton's destination for sharp skin tapers, tailored scissor cuts, hot towel shaves, and expert care for all hair textures. Walk-ins welcome, or reserve your chair 24/7 on Fresha.
+          Experience sharp skin tapers, tailored scissor cuts, and traditional hot towel straight-razor grooming in Southwest Edmonton. Walk-ins welcome or book online 24/7 on Fresha.
         </p>
 
-        <div class="hero-cta-row">
+        <div class="hero-cta-group">
           <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-primary">
             <span>⚡</span> Book Appointment on Fresha ↗
           </a>
           <a href="#services" class="btn btn-outline">
-            <span>✂️</span> View Services &amp; Pricing
+            View Service Menu
           </a>
         </div>
 
         <!-- Trust Stats Panel -->
         <div class="hero-stats-panel">
-          <div class="stat-box">
-            <div class="stat-number">4.8 ★★★★★</div>
-            <div class="stat-label">250+ Google Reviews</div>
+          <div class="stat-item">
+            <div class="stat-num">4.8 ★★★★★</div>
+            <div class="stat-lbl">250+ Google Reviews</div>
           </div>
-          <div class="stat-box">
-            <div class="stat-number">All Hair Textures</div>
-            <div class="stat-label">Straight, Curly &amp; Afro</div>
+          <div class="stat-item">
+            <div class="stat-num">All Hair Types</div>
+            <div class="stat-lbl">Straight, Curly &amp; Afro</div>
           </div>
-          <div class="stat-box">
-            <div class="stat-number">SW Edmonton</div>
-            <div class="stat-label">2763 182 Street SW</div>
+          <div class="stat-item">
+            <div class="stat-num">SW Edmonton</div>
+            <div class="stat-lbl">2763 182 Street SW</div>
           </div>
         </div>
       </div>
@@ -128,209 +128,236 @@
 
     <!-- ── Marquee Ticker ────────────────────────────────────────────── -->
     <div class="marquee-band" aria-hidden="true">
-      <div class="marquee-rail">
-        <div class="marquee-group">
-          <span class="marquee-item"><span>✂️</span> PRECISION SKIN FADES</span>
-          <span class="marquee-item"><span>🧔</span> BEARD TRIMS &amp; SCULPTING</span>
-          <span class="marquee-item"><span>🪒</span> HOT TOWEL STRAIGHT RAZOR SHAVES</span>
-          <span class="marquee-item"><span>💈</span> ALL HAIR TEXTURES &amp; CURL PATTERNS</span>
-          <span class="marquee-item"><span>🧒</span> KIDS &amp; YOUTH CUTS</span>
-          <span class="marquee-item"><span>✨</span> HAIR WAXING &amp; GROOMING</span>
-          <span class="marquee-item"><span>📍</span> EDMONTON, ALBERTA</span>
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span class="marquee-item"><span>✦</span> SKIN FADES</span>
+          <span class="marquee-item"><span>✦</span> BEARD TRIMS &amp; LINE UPS</span>
+          <span class="marquee-item"><span>✦</span> HEAD &amp; BEARD HOT TOWEL SHAVES</span>
+          <span class="marquee-item"><span>✦</span> BUZZ CUTS</span>
+          <span class="marquee-item"><span>✦</span> HAIR COLOR</span>
+          <span class="marquee-item"><span>✦</span> EAR &amp; NOSE WAXING</span>
+          <span class="marquee-item"><span>✦</span> EDMONTON, AB</span>
         </div>
-        <div class="marquee-group">
-          <span class="marquee-item"><span>✂️</span> PRECISION SKIN FADES</span>
-          <span class="marquee-item"><span>🧔</span> BEARD TRIMS &amp; SCULPTING</span>
-          <span class="marquee-item"><span>🪒</span> HOT TOWEL STRAIGHT RAZOR SHAVES</span>
-          <span class="marquee-item"><span>💈</span> ALL HAIR TEXTURES &amp; CURL PATTERNS</span>
-          <span class="marquee-item"><span>🧒</span> KIDS &amp; YOUTH CUTS</span>
-          <span class="marquee-item"><span>✨</span> HAIR WAXING &amp; GROOMING</span>
-          <span class="marquee-item"><span>📍</span> EDMONTON, ALBERTA</span>
+        <div class="marquee-content">
+          <span class="marquee-item"><span>✦</span> SKIN FADES</span>
+          <span class="marquee-item"><span>✦</span> BEARD TRIMS &amp; LINE UPS</span>
+          <span class="marquee-item"><span>✦</span> HEAD &amp; BEARD HOT TOWEL SHAVES</span>
+          <span class="marquee-item"><span>✦</span> BUZZ CUTS</span>
+          <span class="marquee-item"><span>✦</span> HAIR COLOR</span>
+          <span class="marquee-item"><span>✦</span> EAR &amp; NOSE WAXING</span>
+          <span class="marquee-item"><span>✦</span> EDMONTON, AB</span>
         </div>
       </div>
     </div>
 
-    <!-- ── Services & Pricing Section ─────────────────────────────────── -->
+    <!-- ── Services & Pricing (Exact 9 Services) ───────────────────────── -->
     <section class="services-section" id="services">
       <div class="container">
         
         <header class="section-header">
-          <div class="eyebrow-badge">
+          <div class="eyebrow-pill">
             <span>✂️</span> Service Menu
           </div>
           <h2 class="section-title">
-            SERVICES &amp; <span class="text-gold-gradient">PRICING</span>
+            SERVICES &amp; <span class="text-gold-gradient">RATES</span>
           </h2>
           <div class="gold-accent-line">
-            <span>💈</span>
+            <span>✦</span>
           </div>
           <p class="section-subtitle">
-            All appointments can be booked instantly with live chair availability on Fresha.
+            Transparent pricing and online booking with live chair availability on Fresha.
           </p>
         </header>
 
-        <!-- Category Filters -->
+        <!-- Category Tabs -->
         <div class="services-filter-tabs">
-          <button class="service-tab-btn active" data-category="all">All Services</button>
-          <button class="service-tab-btn" data-category="haircut">Haircuts &amp; Fades</button>
-          <button class="service-tab-btn" data-category="beard">Beard &amp; Shaves</button>
-          <button class="service-tab-btn" data-category="combo">Combos &amp; Packages</button>
-          <button class="service-tab-btn" data-category="specialty">Specialty &amp; Kids</button>
+          <button class="service-tab-btn active" data-category="all">All Services (9)</button>
+          <button class="service-tab-btn" data-category="haircuts">Haircuts &amp; Fades</button>
+          <button class="service-tab-btn" data-category="beards">Beard &amp; Shaves</button>
+          <button class="service-tab-btn" data-category="treatments">Color &amp; Waxing</button>
         </div>
 
-        <!-- Service Cards Grid -->
-        <div class="services-grid" id="services-grid-list">
+        <!-- Exact 9 Services Grid -->
+        <div class="services-grid-menu" id="services-grid-list">
 
-          <!-- 1. Skin Fade -->
-          <article class="service-card highlight" data-category="haircut">
-            <span class="card-tag-pill">Most Popular</span>
+          <!-- 1. Haircut -->
+          <article class="service-menu-card featured" data-category="haircuts">
+            <span class="card-badge-gold">Popular</span>
             <div>
-              <div class="service-top-row">
-                <div class="service-icon-box">⚡</div>
+              <div class="service-card-head">
+                <div>
+                  <h3 class="service-title-text">Haircut</h3>
+                  <div class="service-duration-badge">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    30 min
+                  </div>
+                </div>
+                <div class="service-price-tag">CA$35</div>
               </div>
-              <h3 class="service-name">Signature Skin Fade &amp; Taper</h3>
-              <p class="service-desc">Precision zero or foil razor skin fade with seamless blending and sharp perimeter hairline lineup.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Low, mid, or high skin fade choice</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Razor-sharp outline finish</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Styling clay or pomade application</li>
-              </ul>
+              <p class="service-card-body">Nice hair cut and style tailored to your face shape and personal look.</p>
             </div>
-            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-primary btn-book-fresha-card">
+            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-primary btn-book-service-card">
               Book on Fresha ↗
             </a>
           </article>
 
-          <!-- 2. Classic Cut -->
-          <article class="service-card" data-category="haircut">
+          <!-- 2. Skin Fade -->
+          <article class="service-menu-card featured" data-category="haircuts">
+            <span class="card-badge-gold">Signature</span>
             <div>
-              <div class="service-top-row">
-                <div class="service-icon-box">✂️</div>
+              <div class="service-card-head">
+                <div>
+                  <h3 class="service-title-text">Skin Fade</h3>
+                  <div class="service-duration-badge">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    30 min
+                  </div>
+                </div>
+                <div class="service-price-tag">CA$40</div>
               </div>
-              <h3 class="service-name">Classic Gentlemen's Cut</h3>
-              <p class="service-desc">Tailored scissor and clipper cut customized to your face shape, style, and natural hair flow.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Scissor over comb precision</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Clean neck taper &amp; edging</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Blow dry &amp; finish styling</li>
-              </ul>
+              <p class="service-card-body">Precision razor or zero skin fade with seamless blending and sharp perimeter lineup.</p>
             </div>
-            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-fresha-card">
+            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-primary btn-book-service-card">
               Book on Fresha ↗
             </a>
           </article>
 
-          <!-- 3. Beard Sculpt -->
-          <article class="service-card" data-category="beard">
+          <!-- 3. Beard trim and line up -->
+          <article class="service-menu-card" data-category="beards">
             <div>
-              <div class="service-top-row">
-                <div class="service-icon-box">🧔</div>
+              <div class="service-card-head">
+                <div>
+                  <h3 class="service-title-text">Beard Trim and Line Up</h3>
+                  <div class="service-duration-badge">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    15 min
+                  </div>
+                </div>
+                <div class="service-price-tag">CA$25</div>
               </div>
-              <h3 class="service-name">Beard Trim &amp; Razor Lineup</h3>
-              <p class="service-desc">Complete beard sculpting, length reduction, cheek line crisping, and nourishing beard oil finish.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Straight razor cheek &amp; neck line</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Bulk shaping &amp; mustache trim</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Conditioning hot beard balm</li>
-              </ul>
+              <p class="service-card-body">Professional beard shaping, bulk reduction, and crisp razor lineup along cheek and neckline.</p>
             </div>
-            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-fresha-card">
+            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-service-card">
               Book on Fresha ↗
             </a>
           </article>
 
-          <!-- 4. Cut + Beard Combo -->
-          <article class="service-card highlight" data-category="combo">
-            <span class="card-tag-pill">Best Value</span>
+          <!-- 4. Beard hot towels & straight razor shave -->
+          <article class="service-menu-card" data-category="beards">
             <div>
-              <div class="service-top-row">
-                <div class="service-icon-box">💎</div>
+              <div class="service-card-head">
+                <div>
+                  <h3 class="service-title-text">Beard Hot Towels &amp; Straight Razor Shave</h3>
+                  <div class="service-duration-badge">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    20 min
+                  </div>
+                </div>
+                <div class="service-price-tag">CA$30</div>
               </div>
-              <h3 class="service-name">Haircut + Beard Combo</h3>
-              <p class="service-desc">The full treatment. Precision haircut or skin fade paired with custom beard sculpt and hot towel treatment.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Full haircut / fade of your choice</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Full beard sculpting &amp; razor lineup</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Hot towel steam wrap finish</li>
-              </ul>
+              <p class="service-card-body">Traditional straight razor shave treatment with soothing hot steam towels and rich lather.</p>
             </div>
-            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-primary btn-book-fresha-card">
+            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-service-card">
               Book on Fresha ↗
             </a>
           </article>
 
-          <!-- 5. Hot Towel Shave -->
-          <article class="service-card" data-category="beard">
+          <!-- 5. Head hot towels & straight razor shave -->
+          <article class="service-menu-card" data-category="beards">
             <div>
-              <div class="service-top-row">
-                <div class="service-icon-box">🪒</div>
+              <div class="service-card-head">
+                <div>
+                  <h3 class="service-title-text">Head Hot Towels &amp; Straight Razor Shave</h3>
+                  <div class="service-duration-badge">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    30 min
+                  </div>
+                </div>
+                <div class="service-price-tag">CA$35</div>
               </div>
-              <h3 class="service-name">Hot Towel Straight Razor Shave</h3>
-              <p class="service-desc">Traditional straight razor shave with warm lather, multi-pass eucalyptus steam towels, and cold close.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Warm lather &amp; pre-shave oil</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Straight razor smooth shave</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Soothing aftershave balm</li>
-              </ul>
+              <p class="service-card-body">Full head razor shave featuring warm eucalyptus hot towels, protective lather, and a super smooth finish.</p>
             </div>
-            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-fresha-card">
+            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-service-card">
               Book on Fresha ↗
             </a>
           </article>
 
-          <!-- 6. Curly & Afro Hair -->
-          <article class="service-card" data-category="specialty">
+          <!-- 6. Buzz cut with shaver -->
+          <article class="service-menu-card" data-category="haircuts">
             <div>
-              <div class="service-top-row">
-                <div class="service-icon-box">💈</div>
+              <div class="service-card-head">
+                <div>
+                  <h3 class="service-title-text">Buzz Cut with Shaver</h3>
+                  <div class="service-duration-badge">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    20 min
+                  </div>
+                </div>
+                <div class="service-price-tag">CA$30</div>
               </div>
-              <h3 class="service-name">Textured, Curly &amp; Afro Cuts</h3>
-              <p class="service-desc">Specialist cutting, taper fading, shape-ups, and sponge styling for all curl types and coiled hair textures.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Crisp edge &amp; temple taper</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Sponge &amp; curl enhancement</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Freehand shaping</li>
-              </ul>
+              <p class="service-card-body">Close all-over clipper cut finished with an electric foil shaver for an ultra-clean texture.</p>
             </div>
-            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-fresha-card">
+            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-service-card">
               Book on Fresha ↗
             </a>
           </article>
 
-          <!-- 7. Kids Cut -->
-          <article class="service-card" data-category="specialty">
+          <!-- 7. Buzz cut -->
+          <article class="service-menu-card" data-category="haircuts">
             <div>
-              <div class="service-top-row">
-                <div class="service-icon-box">🧒</div>
+              <div class="service-card-head">
+                <div>
+                  <h3 class="service-title-text">Buzz Cut</h3>
+                  <div class="service-duration-badge">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    15 min
+                  </div>
+                </div>
+                <div class="service-price-tag">CA$20</div>
               </div>
-              <h3 class="service-name">Kids &amp; Youth Haircuts</h3>
-              <p class="service-desc">Clean, patient, and modern cuts for kids and teens in a comfortable, welcoming environment.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Gentle &amp; friendly experience</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Age-appropriate styling</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Clean hairline finish</li>
-              </ul>
+              <p class="service-card-body">Fast, uniform clipper cut across the entire head with neat hairline clean-up.</p>
             </div>
-            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-fresha-card">
+            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-service-card">
               Book on Fresha ↗
             </a>
           </article>
 
-          <!-- 8. Hair Waxing & Grooming -->
-          <article class="service-card" data-category="specialty">
+          <!-- 8. Hair Color -->
+          <article class="service-menu-card" data-category="treatments">
             <div>
-              <div class="service-top-row">
-                <div class="service-icon-box">✨</div>
+              <div class="service-card-head">
+                <div>
+                  <h3 class="service-title-text">Hair Color</h3>
+                  <div class="service-duration-badge">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    1 hr
+                  </div>
+                </div>
+                <div class="service-price-tag">CA$35</div>
               </div>
-              <h3 class="service-name">Facial Waxing &amp; Hair Care</h3>
-              <p class="service-desc">Clean detailing for nose, ears, unibrow, and specialized scalp treatments to complete your look.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Quick &amp; painless nose/ear wax</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Eyebrow shaping add-on</li>
-                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Fresh, clean groomed finish</li>
-              </ul>
+              <p class="service-card-body">Professional hair coloring, gray coverage blending, or custom tone enhancements.</p>
             </div>
-            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-fresha-card">
+            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-service-card">
+              Book on Fresha ↗
+            </a>
+          </article>
+
+          <!-- 9. Ear & nose waxing -->
+          <article class="service-menu-card" data-category="treatments">
+            <div>
+              <div class="service-card-head">
+                <div>
+                  <h3 class="service-title-text">Ear &amp; Nose Waxing</h3>
+                  <div class="service-duration-badge">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    15 min
+                  </div>
+                </div>
+                <div class="service-price-tag">CA$15</div>
+              </div>
+              <p class="service-card-body">Quick, clean, and gentle waxing detailing to remove unwanted ear and nose hair.</p>
+            </div>
+            <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-outline btn-book-service-card">
               Book on Fresha ↗
             </a>
           </article>
@@ -345,14 +372,14 @@
       <div class="container">
         
         <header class="section-header">
-          <div class="eyebrow-badge">
-            <span>📷</span> Our Craft
+          <div class="eyebrow-pill">
+            <span>📷</span> Visual Proof
           </div>
           <h2 class="section-title">
             RECENT CLIENT <span class="text-gold-gradient">CUTS &amp; STYLES</span>
           </h2>
           <div class="gold-accent-line">
-            <span>💈</span>
+            <span>✦</span>
           </div>
           <p class="section-subtitle">
             Explore recent cuts, skin tapers, and beard restorations directly from our chairs.
@@ -361,7 +388,7 @@
 
         <!-- Category Filters -->
         <div class="gallery-filters">
-          <button class="gallery-filter-btn active" data-filter="all">All Work</button>
+          <button class="gallery-filter-btn active" data-filter="all">All Styles</button>
           <button class="gallery-filter-btn" data-filter="fades">Skin Fades</button>
           <button class="gallery-filter-btn" data-filter="beards">Beards &amp; Shaves</button>
           <button class="gallery-filter-btn" data-filter="textured">Textured &amp; Curly</button>
@@ -397,7 +424,7 @@
               />
             </div>
             <div class="experience-badge">
-              <span style="font-size: 1.8rem;">💈</span>
+              <span style="font-size: 1.6rem;">💈</span>
               <div>
                 <div class="exp-badge-val">EDMONTON</div>
                 <div class="exp-badge-lbl">Master Grooming Studio</div>
@@ -406,8 +433,8 @@
           </div>
 
           <div class="experience-text-box">
-            <div class="eyebrow-badge">
-              <span>✦</span> The Bearded Guys Experience
+            <div class="eyebrow-pill">
+              <span>✦</span> The Bearded Guys Standard
             </div>
 
             <h2 class="section-title">
@@ -416,7 +443,7 @@
             </h2>
 
             <div class="gold-accent-line">
-              <span>🪒</span>
+              <span>✦</span>
             </div>
 
             <p class="section-subtitle">
@@ -425,25 +452,21 @@
 
             <div class="experience-features-grid">
               <div class="exp-feature-card">
-                <div class="exp-feat-icon">💈</div>
                 <h4 class="exp-feat-title">All Hair Textures</h4>
                 <p class="exp-feat-desc">Specialized expertise across straight, wavy, curly, coiled, and Afro hair types.</p>
               </div>
 
               <div class="exp-feature-card">
-                <div class="exp-feat-icon">🧔</div>
                 <h4 class="exp-feat-title">Beard Sculpting</h4>
                 <p class="exp-feat-desc">Custom jawline contouring, razor lines, and hot essential oil conditioning.</p>
               </div>
 
               <div class="exp-feature-card">
-                <div class="exp-feat-icon">♨️</div>
                 <h4 class="exp-feat-title">Hot Towel Steam</h4>
                 <p class="exp-feat-desc">Relaxing eucalyptus hot towel treatment with every shave service.</p>
               </div>
 
               <div class="exp-feature-card">
-                <div class="exp-feat-icon">⚡</div>
                 <h4 class="exp-feat-title">Easy Online Booking</h4>
                 <p class="exp-feat-desc">Instant booking on Fresha 24/7 with zero wait times on arrival.</p>
               </div>
@@ -451,7 +474,7 @@
 
             <div style="margin-top: 1rem;">
               <a href="https://www.fresha.com/a/bearded-guys-barber-shop-edmonton-2763-182-street-southwest-s6229vc2/booking?allOffer=true&menu=true&pId=1100781&cartId=3a9f23b6-55c1-4516-93da-4acbf28db76a" target="_blank" rel="noopener" class="btn btn-primary">
-                Book Your Chair on Fresha ↗
+                Book on Fresha ↗
               </a>
             </div>
           </div>
@@ -465,14 +488,14 @@
       <div class="container">
         
         <header class="section-header">
-          <div class="eyebrow-badge">
-            <span>⭐</span> Google Reviews
+          <div class="eyebrow-pill">
+            <span>★</span> Google Reviews
           </div>
           <h2 class="section-title">
             WHAT OUR <span class="text-gold-gradient">CLIENTS SAY</span>
           </h2>
           <div class="gold-accent-line">
-            <span>★</span>
+            <span>✦</span>
           </div>
           <p class="section-subtitle">
             Rated 4.8 out of 5 stars based on over 250 verified customer reviews in Edmonton.
@@ -521,7 +544,7 @@
 
         <div style="text-align: center; margin-top: 3rem;">
           <a href="https://share.google/1DQuSzHd6eY13LUKj" target="_blank" rel="noopener" class="btn btn-outline">
-            <span>⭐</span> Read All Reviews on Google ↗
+            <span>★</span> Read All Reviews on Google ↗
           </a>
         </div>
 
@@ -533,17 +556,17 @@
       <div class="container">
         
         <header class="section-header">
-          <div class="eyebrow-badge">
-            <span>📍</span> Visit Us
+          <div class="eyebrow-pill">
+            <span>📍</span> Visit The Shop
           </div>
           <h2 class="section-title">
             HOURS &amp; <span class="text-gold-gradient">LOCATION</span>
           </h2>
           <div class="gold-accent-line">
-            <span>💈</span>
+            <span>✦</span>
           </div>
           <p class="section-subtitle">
-            Located in southwest Edmonton on 182 Street SW. Walk-ins welcome or book ahead on Fresha.
+            Located in southwest Edmonton on 182 Street SW. Free parking directly in front.
           </p>
         </header>
 
@@ -592,9 +615,9 @@
           </div>
 
           <!-- Stylized Map & Google Link Card -->
-          <div class="contact-card-box" style="background: var(--bg-surface-3); display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;">
+          <div class="contact-card-box" style="background: var(--bg-surface-2); display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;">
             <div>
-              <div class="eyebrow-badge" style="margin-bottom: 0.75rem;">
+              <div class="eyebrow-pill" style="margin-bottom: 0.75rem;">
                 <span>🗺️</span> South Edmonton
               </div>
               <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--text-pure); margin-bottom: 0.5rem; text-transform: uppercase;">Windermere / SW Area</h3>
@@ -622,7 +645,7 @@
 
             <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
               <a href="https://share.google/1DQuSzHd6eY13LUKj" target="_blank" rel="noopener" class="btn btn-outline" style="flex: 1;">
-                <span>⭐</span> Google Profile ↗
+                <span>★</span> Google Profile ↗
               </a>
               <a href="https://maps.google.com/?q=Bearded+Guys+Barber+Shop+2763+182+St+SW+Edmonton+AB+T6W+4V2" target="_blank" rel="noopener" class="btn btn-primary" style="flex: 1;">
                 <span>🧭</span> Directions ↗
@@ -655,13 +678,14 @@
 
         <!-- Quick Links -->
         <div>
-          <h4 class="footer-heading">Navigation</h4>
+          <h4 class="footer-heading">Services</h4>
           <ul class="footer-links-list">
-            <li><a href="#services">Services &amp; Pricing</a></li>
-            <li><a href="#gallery">Recent Cuts</a></li>
-            <li><a href="#experience">The Shop Experience</a></li>
-            <li><a href="#reviews">Google Reviews</a></li>
-            <li><a href="#location">Hours &amp; Directions</a></li>
+            <li><a href="#services">Haircut (CA$35)</a></li>
+            <li><a href="#services">Skin Fade (CA$40)</a></li>
+            <li><a href="#services">Beard Trim &amp; Lineup (CA$25)</a></li>
+            <li><a href="#services">Beard Hot Towel Shave (CA$30)</a></li>
+            <li><a href="#services">Head Hot Towel Shave (CA$35)</a></li>
+            <li><a href="#services">Hair Color (CA$35)</a></li>
           </ul>
         </div>
 
@@ -747,7 +771,7 @@
 
     // 6. Services Category Filter Tabs
     const serviceFilterBtns = document.querySelectorAll('.service-tab-btn');
-    const serviceCards = document.querySelectorAll('.service-card');
+    const serviceCards = document.querySelectorAll('.service-menu-card');
 
     serviceFilterBtns.forEach(btn => {
       btn.addEventListener('click', () => {

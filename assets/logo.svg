@@ -1,57 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none" role="img" aria-label="Bearded Guys Barbershop">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 70" fill="none" role="img" aria-label="Bearded Guys Barber Shop">
   <defs>
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F5E2B3" />
-      <stop offset="35%" stop-color="#DFBA73" />
-      <stop offset="70%" stop-color="#C59B27" />
-      <stop offset="100%" stop-color="#9E7611" />
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3E7C4" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#AA820A" />
     </linearGradient>
-    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#DFBA73" stop-opacity="0.3" />
-      <stop offset="100%" stop-color="#DFBA73" stop-opacity="0" />
-    </linearGradient>
-    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
   </defs>
 
-  <!-- Left Emblem: Barber Pole / Crossed Razors Crest -->
+  <!-- Clean Minimalist Monogram Icon -->
   <g transform="translate(10, 8)">
-    <!-- Outer Shield / Hexagon -->
-    <polygon points="32,4 58,16 58,48 32,60 6,48 6,16" stroke="url(#goldGrad)" stroke-width="2" fill="#121215" filter="url(#subtleGlow)" />
-    <!-- Inner Border -->
-    <polygon points="32,8 54,18 54,46 32,56 10,46 10,18" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2,2" fill="none" opacity="0.6" />
-    
-    <!-- Crossed Straight Razors -->
-    <!-- Razor 1 -->
-    <g transform="translate(32,32) rotate(-35) translate(-32,-32)">
-      <rect x="29" y="16" width="6" height="28" rx="2" fill="url(#goldGrad)" />
-      <circle cx="32" cy="19" r="1.5" fill="#121215" />
-      <path d="M30 24 L34 24 L33 42 L31 42 Z" fill="#FFFFFF" opacity="0.9" />
-    </g>
-    <!-- Razor 2 -->
-    <g transform="translate(32,32) rotate(35) translate(-32,-32)">
-      <rect x="29" y="16" width="6" height="28" rx="2" fill="url(#goldGrad)" />
-      <circle cx="32" cy="19" r="1.5" fill="#121215" />
-      <path d="M30 24 L34 24 L33 42 L31 42 Z" fill="#FFFFFF" opacity="0.9" />
-    </g>
-    <!-- Center Monogram 'BG' -->
-    <circle cx="32" cy="32" r="9" fill="#121215" stroke="url(#goldGrad)" stroke-width="1.5" />
-    <text x="32" y="36" font-family="'Cinzel', 'Bebas Neue', serif" font-size="10" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="0.5">BG</text>
-    
-    <!-- Mini Stars -->
-    <path d="M32 10 L33 12 L35 12 L33.5 13.5 L34 15.5 L32 14 L30 15.5 L30.5 13.5 L29 12 L31 12 Z" fill="url(#goldGrad)" />
+    <rect x="0" y="0" width="54" height="54" rx="10" fill="#141418" stroke="url(#goldGradient)" stroke-width="1.5" />
+    <!-- Straight Razor Outline Minimalist -->
+    <path d="M16 38 L38 16" stroke="url(#goldGradient)" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M22 38 L38 22" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.8" />
+    <circle cx="16" cy="38" r="2.5" fill="url(#goldGradient)" />
+    <!-- Mini Scissors / Accent -->
+    <path d="M38 38 L27 27" stroke="url(#goldGradient)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2,2" opacity="0.6" />
+    <text x="27" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="800" fill="url(#goldGradient)" text-anchor="middle" letter-spacing="1.5">EST.18</text>
   </g>
 
-  <!-- Typography Wordmark -->
-  <!-- Top Tagline -->
-  <text x="82" y="24" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-size="9" font-weight="700" letter-spacing="4" fill="url(#goldGrad)" text-transform="uppercase">EST. 2018 • MASTER GROOMING</text>
-  
-  <!-- Main Title -->
-  <text x="80" y="50" font-family="'Cinzel', 'Bebas Neue', sans-serif" font-size="28" font-weight="900" letter-spacing="3" fill="#FFFFFF">BEARDED</text>
-  <text x="216" y="50" font-family="'Cinzel', 'Bebas Neue', sans-serif" font-size="28" font-weight="900" letter-spacing="3" fill="url(#goldGrad)">GUYS</text>
-  
-  <!-- Subtitle Barbershop -->
-  <text x="82" y="66" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-size="9" font-weight="600" letter-spacing="5.5" fill="#9999A5" text-transform="uppercase">BARBERSHOP &amp; BEARD LOUNGE</text>
+  <!-- Typography -->
+  <text x="76" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="800" letter-spacing="4" fill="url(#goldGradient)" text-transform="uppercase">EDMONTON • ALBERTA</text>
+  <text x="74" y="47" font-family="'Oswald', 'Syne', sans-serif" font-size="24" font-weight="700" letter-spacing="1.5" fill="#FFFFFF" text-transform="uppercase">BEARDED GUYS</text>
+  <text x="232" y="47" font-family="'Oswald', 'Syne', sans-serif" font-size="24" font-weight="700" letter-spacing="1.5" fill="url(#goldGradient)" text-transform="uppercase">BARBER</text>
+  <text x="76" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="600" letter-spacing="3.5" fill="#8E8E9F" text-transform="uppercase">SHOP &amp; GROOMING STUDIO</text>
 </svg>
