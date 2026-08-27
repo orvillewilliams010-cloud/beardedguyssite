@@ -3,332 +3,1021 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Bearded Guys Barbershop — Premium cuts, fades, and beard grooming. Book your appointment today." />
-  <title>Bearded Guys Barbershop</title>
+  <meta name="description" content="Bearded Guys Barbershop & Grooming Lounge — Premium men's haircuts, skin fades, beard sculpting, and hot towel shaves. Book online today." />
+  <meta name="keywords" content="barbershop, beard trim, skin fade, men's haircut, straight razor shave, bearded guys" />
+  <title>Bearded Guys Barbershop — Master Craft. Timeless Style.</title>
 
-  <!-- Preconnect for performance -->
+  <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
 
-  <!-- Styles -->
+  <!-- Master Stylesheet -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <!-- ── Navigation ────────────────────────────────────────── -->
-  <header>
-    <nav class="site-nav" aria-label="Main navigation">
-      <div class="nav-inner">
-        <a href="#hero" class="nav-logo" aria-label="Bearded Guys — home">
-          <img src="assets/logo.svg" alt="Bearded Guys logo" width="160" height="44" />
+  <!-- ── Top Announcement Bar ────────────────────────────────────────── -->
+  <aside class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span class="status-badge-live">
+          <span class="status-dot"></span>
+          <span id="live-hours-status">OPEN TODAY • 9:00 AM – 7:00 PM</span>
+        </span>
+        <span>📍 123 Main Street, Suite 4B</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:+15552345678">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (555) 234-5678
         </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          @beardedguys
+        </a>
+      </div>
+    </div>
+  </aside>
 
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-          <span></span><span></span><span></span>
+  <!-- ── Main Sticky Navigation ──────────────────────────────────────── -->
+  <header class="site-nav" id="site-header">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Bearded Guys Barbershop">
+        <img src="assets/logo.svg" alt="Bearded Guys Barbershop Logo" width="220" height="52" />
+      </a>
+
+      <nav aria-label="Main menu">
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="#services" class="nav-link">Services &amp; Pricing</a></li>
+          <li><a href="#gallery" class="nav-link">Portfolio</a></li>
+          <li><a href="#barbers" class="nav-link">Master Barbers</a></li>
+          <li><a href="#reviews" class="nav-link">Reviews</a></li>
+          <li><a href="#contact" class="nav-link">Location &amp; Hours</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-primary btn-sm open-booking-btn" type="button">
+          <span class="btn-icon-pulse">⚡</span>
+          Book Appointment
         </button>
 
-        <ul class="nav-links" id="nav-links" role="list">
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#contact" class="btn btn-primary">Book Now</a></li>
-        </ul>
+        <a href="login.html" class="nav-owner-link" title="Owner / Barber Portal" aria-label="Owner Login">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
       </div>
-    </nav>
+    </div>
   </header>
 
   <main>
 
-    <!-- ── Hero ──────────────────────────────────────────────── -->
-    <section class="hero" id="hero">
-      <div class="hero-bg" role="img" aria-label="Barbershop background"></div>
-      <div class="hero-content container">
-        <span class="hero-eyebrow">Premium Barbershop Experience</span>
-        <h1 class="hero-title">
-          Look Sharp.<br /><span>Feel Bold.</span>
-        </h1>
-        <p class="hero-sub">
-          Master cuts, precision fades, and expert beard grooming — crafted for the modern man.
-        </p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn btn-primary">Book an Appointment</a>
-          <a href="#gallery" class="btn btn-outline">See Our Work</a>
-        </div>
-      </div>
+    <!-- ── Hero Section ──────────────────────────────────────────────── -->
+    <section class="hero-section" id="hero">
+      <div class="hero-backdrop-img"></div>
+      <div class="hero-grid-overlay"></div>
 
-      <!-- Scroll indicator -->
-      <div class="hero-scroll" aria-hidden="true">
-        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-        Scroll
+      <div class="container hero-content">
+        <div class="hero-badge">
+          <span class="star-icon">★</span>
+          VOTED #1 PREMIUM BARBERSHOP &amp; BEARD LOUNGE
+        </div>
+
+        <h1 class="hero-title">
+          WHERE MASTER CRAFT<br />
+          <span class="text-gold-gradient">MEETS TIMELESS STYLE.</span>
+        </h1>
+
+        <p class="hero-description">
+          Step into an authentic gentlemen's sanctuary. Precision fades, bespoke scissor work, and traditional hot towel straight-razor grooming tailored exclusively to your look.
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn btn-primary open-booking-btn" type="button">
+            <span>⚡</span> Book Your Cut
+          </button>
+          <a href="#services" class="btn btn-outline">
+            <span>✂️</span> View Services &amp; Prices
+          </a>
+        </div>
+
+        <!-- Trust Stats Bar -->
+        <div class="hero-trust-bar">
+          <div class="trust-item">
+            <span class="trust-num">4.9 ★★★★★</span>
+            <span class="trust-label">500+ Google Reviews</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-num">10+ Years</span>
+            <span class="trust-label">Behind The Chair</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-num">100%</span>
+            <span class="trust-label">Craft Satisfaction</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ── About ─────────────────────────────────────────────── -->
-    <section class="about" id="about" aria-labelledby="about-title">
+    <!-- ── Live Marquee Ticker ────────────────────────────────────────── -->
+    <div class="marquee-wrapper" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span class="marquee-item"><span class="marquee-icon">✂️</span> PRECISION SKIN FADES</span>
+          <span class="marquee-item"><span class="marquee-icon">🧔</span> BEARD SCULPTING &amp; OIL RITUALS</span>
+          <span class="marquee-item"><span class="marquee-icon">🪒</span> HOT TOWEL STRAIGHT RAZOR SHAVES</span>
+          <span class="marquee-item"><span class="marquee-icon">👑</span> VIP EXECUTIVE GROOMING</span>
+          <span class="marquee-item"><span class="marquee-icon">🍺</span> COMPLIMENTARY COLD CRAFT BREW</span>
+          <span class="marquee-item"><span class="marquee-icon">💈</span> WALK-INS ALWAYS WELCOME</span>
+        </div>
+        <div class="marquee-content">
+          <span class="marquee-item"><span class="marquee-icon">✂️</span> PRECISION SKIN FADES</span>
+          <span class="marquee-item"><span class="marquee-icon">🧔</span> BEARD SCULPTING &amp; OIL RITUALS</span>
+          <span class="marquee-item"><span class="marquee-icon">🪒</span> HOT TOWEL STRAIGHT RAZOR SHAVES</span>
+          <span class="marquee-item"><span class="marquee-icon">👑</span> VIP EXECUTIVE GROOMING</span>
+          <span class="marquee-item"><span class="marquee-icon">🍺</span> COMPLIMENTARY COLD CRAFT BREW</span>
+          <span class="marquee-item"><span class="marquee-icon">💈</span> WALK-INS ALWAYS WELCOME</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── About & Craftsmanship Section ─────────────────────────────── -->
+    <section class="about-section" id="about">
       <div class="container">
         <div class="about-grid">
-          <div class="about-image-wrap reveal">
-            <!-- Replace src with a real photo -->
-            <img
-              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80"
-              alt="Barber working on a client"
-              loading="lazy"
-              width="600"
-              height="750"
-            />
+          
+          <!-- Visual Column -->
+          <div class="about-visual-col">
+            <div class="about-photo-primary">
+              <img
+                src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=900&auto=format&fit=crop&q=85"
+                alt="Master Barber sculpting a beard with precision"
+                loading="lazy"
+                width="600"
+                height="750"
+              />
+            </div>
+            <div class="about-photo-secondary">
+              <img
+                src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&auto=format&fit=crop&q=80"
+                alt="Clean skin fade haircut result"
+                loading="lazy"
+              />
+            </div>
+            <div class="about-experience-badge">
+              <span class="about-badge-icon">💈</span>
+              <div>
+                <div class="about-badge-val">EST. 2018</div>
+                <div class="about-badge-label">Master Craftsmanship</div>
+              </div>
+            </div>
           </div>
 
-          <div class="about-text reveal">
-            <h2 class="section-title" id="about-title">Your Barber.<br /><span>Your Story.</span></h2>
-            <div class="gold-divider"></div>
+          <!-- Text Column -->
+          <div class="about-text-col">
+            <div class="eyebrow-pill">
+              <span>✦</span> The Bearded Guys Standard
+            </div>
+
+            <h2 class="section-title">
+              NOT JUST A HAIRCUT.<br />
+              <span class="text-gold-gradient">A RITUAL OF CONFIDENCE.</span>
+            </h2>
+
+            <div class="gold-divider-crest">
+              <span>🪒</span>
+            </div>
+
             <p class="section-subtitle">
-              With over a decade behind the chair, we bring precision, style, and passion to every cut. 
-              We don't just cut hair — we build confidence.
-            </p>
-            <p style="color: var(--clr-muted); font-size: .95rem; line-height: 1.8;">
-              From classic tapers to modern skin fades and beard sculpting, every service is tailored to 
-              you. Walk in looking good. Walk out feeling unstoppable.
+              At Bearded Guys, we've elevated barbering into an art form. Founded on the conviction that every gentleman deserves undivided attention and flawless execution, our chairs are a haven from the daily grind.
             </p>
 
-            <div class="about-stat-row">
-              <div class="about-stat">
-                <span class="about-stat-num">10+</span>
-                <span class="about-stat-label">Years Experience</span>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+              Every appointment starts with a bespoke consultation, includes a soothing essential oil hot towel treatment, and finishes with a sharp razor lineup and custom-crafted beard balms.
+            </p>
+
+            <div class="about-pillars">
+              <div class="pillar-card">
+                <div class="pillar-icon">✂️</div>
+                <h4 class="pillar-title">Master Barbers</h4>
+                <p class="pillar-desc">Over a decade of razor precision and tailored scissor craft.</p>
               </div>
-              <div class="about-stat">
-                <span class="about-stat-num">5K+</span>
-                <span class="about-stat-label">Happy Clients</span>
+
+              <div class="pillar-card">
+                <div class="pillar-icon">🌿</div>
+                <h4 class="pillar-title">Organic Beard Oils</h4>
+                <p class="pillar-desc">Hand-blended cedarwood, jojoba, and sandalwood treatments.</p>
               </div>
-              <div class="about-stat">
-                <span class="about-stat-num">100%</span>
-                <span class="about-stat-label">Satisfaction</span>
+
+              <div class="pillar-card">
+                <div class="pillar-icon">♨️</div>
+                <h4 class="pillar-title">Steam &amp; Hot Towels</h4>
+                <p class="pillar-desc">Eucalyptus-infused steam wrap to open pores and soften hair.</p>
+              </div>
+
+              <div class="pillar-card">
+                <div class="pillar-icon">🥃</div>
+                <h4 class="pillar-title">Gentlemen's Lounge</h4>
+                <p class="pillar-desc">Complimentary espresso, single malt, or cold craft brew.</p>
               </div>
             </div>
 
-            <a href="#contact" class="btn btn-primary" style="align-self: flex-start;">Book a Session</a>
+            <div style="margin-top: 1rem;">
+              <button class="btn btn-primary open-booking-btn" type="button">
+                Experience The Difference
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ── Services ──────────────────────────────────────────── -->
-    <section class="services" id="services" aria-labelledby="services-title">
+    <!-- ── Services & Pricing Section ─────────────────────────────────── -->
+    <section class="services-section" id="services">
       <div class="container">
-        <header class="services-header reveal">
-          <h2 class="section-title" id="services-title">Our <span>Services</span></h2>
-          <div class="gold-divider center"></div>
-          <p class="section-subtitle">Every service includes a hot towel finish and style consultation.</p>
+        
+        <header class="section-header">
+          <div class="eyebrow-pill">
+            <span>✂️</span> Service Menu &amp; Rates
+          </div>
+          <h2 class="section-title">
+            SIGNATURE <span class="text-gold-gradient">GROOMING SERVICES</span>
+          </h2>
+          <div class="gold-divider-crest">
+            <span>👑</span>
+          </div>
+          <p class="section-subtitle">
+            All services include a personal consultation, hot towel neck shave, styling product application, and a cold beverage.
+          </p>
         </header>
 
-        <div class="services-grid">
+        <!-- Category Filters -->
+        <div class="services-filter-bar">
+          <button class="filter-tab-btn active" data-category="all">All Services</button>
+          <button class="filter-tab-btn" data-category="haircut">Haircuts &amp; Fades</button>
+          <button class="filter-tab-btn" data-category="beard">Beard &amp; Shaves</button>
+          <button class="filter-tab-btn" data-category="combo">Packages &amp; VIP</button>
+        </div>
 
-          <article class="service-card reveal">
-            <div class="service-icon">✂️</div>
-            <h3 class="service-name">Classic Cut</h3>
-            <p class="service-desc">Scissor or clipper cut, styled to perfection for any hair type.</p>
-            <span class="service-price">$30</span>
+        <!-- Service Cards Grid -->
+        <div class="services-cards-grid" id="services-cards-container">
+
+          <!-- Card 1 -->
+          <article class="service-card-item" data-category="haircut">
+            <div>
+              <div class="service-header">
+                <div class="service-icon-box">✂️</div>
+                <div class="service-price-box">
+                  <div class="service-cost">$35</div>
+                  <div class="service-duration">35 Mins</div>
+                </div>
+              </div>
+              <h3 class="service-name-title">The Classic Gentlemen's Cut</h3>
+              <p class="service-details-text">Tailored scissor or clipper haircut crafted to suit your face shape and personal style.</p>
+              <ul class="service-inclusions-list">
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Hot towel neck shave</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Precision taper &amp; edges</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Matte clay or pomade styling</li>
+              </ul>
+            </div>
+            <button class="btn btn-outline btn-book-service" data-service-name="The Classic Gentlemen's Cut" data-service-price="$35" type="button">Book Classic Cut</button>
           </article>
 
-          <article class="service-card reveal">
-            <div class="service-icon">⚡</div>
-            <h3 class="service-name">Skin Fade</h3>
-            <p class="service-desc">Precision fade from skin to length — sharp, clean, and seamless.</p>
-            <span class="service-price">$40</span>
+          <!-- Card 2 (Featured) -->
+          <article class="service-card-item featured" data-category="haircut">
+            <span class="featured-ribbon">Most Popular</span>
+            <div>
+              <div class="service-header">
+                <div class="service-icon-box">⚡</div>
+                <div class="service-price-box">
+                  <div class="service-cost">$45</div>
+                  <div class="service-duration">45 Mins</div>
+                </div>
+              </div>
+              <h3 class="service-name-title">Razor Skin Fade &amp; Taper</h3>
+              <p class="service-details-text">Ultra-sharp zero or foil razor skin fade with seamless blending and point-cut textured top.</p>
+              <ul class="service-inclusions-list">
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Foil razor skin close finish</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Razor-sharp hairline edge</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Texturizing powder finish</li>
+              </ul>
+            </div>
+            <button class="btn btn-primary btn-book-service" data-service-name="Razor Skin Fade & Taper" data-service-price="$45" type="button">Book Skin Fade</button>
           </article>
 
-          <article class="service-card reveal">
-            <div class="service-icon">🧔</div>
-            <h3 class="service-name">Beard Sculpt</h3>
-            <p class="service-desc">Shape, line up, and condition your beard for a crisp, defined look.</p>
-            <span class="service-price">$25</span>
+          <!-- Card 3 -->
+          <article class="service-card-item" data-category="beard">
+            <div>
+              <div class="service-header">
+                <div class="service-icon-box">🧔</div>
+                <div class="service-price-box">
+                  <div class="service-cost">$30</div>
+                  <div class="service-duration">30 Mins</div>
+                </div>
+              </div>
+              <h3 class="service-name-title">Master Beard Sculpt &amp; Lineup</h3>
+              <p class="service-details-text">Freehand clipper shaping, cheek &amp; neck razor line-up, and hot towel organic beard oil treatment.</p>
+              <ul class="service-inclusions-list">
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Straight razor cheek/neck crisping</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Custom length &amp; bulk sculpt</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Warm cedarwood oil massage</li>
+              </ul>
+            </div>
+            <button class="btn btn-outline btn-book-service" data-service-name="Master Beard Sculpt & Lineup" data-service-price="$30" type="button">Book Beard Sculpt</button>
           </article>
 
-          <article class="service-card reveal">
-            <div class="service-icon">💎</div>
-            <h3 class="service-name">Cut + Beard Combo</h3>
-            <p class="service-desc">Full haircut plus beard sculpt — the complete look, one session.</p>
-            <span class="service-price">$60</span>
+          <!-- Card 4 (Featured Combo) -->
+          <article class="service-card-item featured" data-category="combo">
+            <span class="featured-ribbon">Best Value</span>
+            <div>
+              <div class="service-header">
+                <div class="service-icon-box">💎</div>
+                <div class="service-price-box">
+                  <div class="service-cost">$68</div>
+                  <div class="service-duration">60 Mins</div>
+                </div>
+              </div>
+              <h3 class="service-name-title">The Complete Cut + Beard Combo</h3>
+              <p class="service-details-text">The full treatment. Precision haircut/fade paired with custom beard sculpting and hot steam towel.</p>
+              <ul class="service-inclusions-list">
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Full bespoke haircut or skin fade</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Complete beard sculpting &amp; razor lineup</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Double hot towel steam treatment</li>
+              </ul>
+            </div>
+            <button class="btn btn-primary btn-book-service" data-service-name="The Complete Cut + Beard Combo" data-service-price="$68" type="button">Book Combo</button>
           </article>
 
-          <article class="service-card reveal">
-            <div class="service-icon">🪒</div>
-            <h3 class="service-name">Hot Towel Shave</h3>
-            <p class="service-desc">Traditional straight-razor shave with hot towel treatment.</p>
-            <span class="service-price">$35</span>
+          <!-- Card 5 -->
+          <article class="service-card-item" data-category="beard">
+            <div>
+              <div class="service-header">
+                <div class="service-icon-box">🪒</div>
+                <div class="service-price-box">
+                  <div class="service-cost">$40</div>
+                  <div class="service-duration">40 Mins</div>
+                </div>
+              </div>
+              <h3 class="service-name-title">Traditional Hot Towel Shave</h3>
+              <p class="service-details-text">Authentic straight-razor shave with pre-shave lather, double eucalyptus steam wrap, and cold towel close.</p>
+              <ul class="service-inclusions-list">
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Badger hair brush warm lather</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Double Japanese straight razor pass</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Soothing witch hazel &amp; aftershave</li>
+              </ul>
+            </div>
+            <button class="btn btn-outline btn-book-service" data-service-name="Traditional Hot Towel Shave" data-service-price="$40" type="button">Book Hot Shave</button>
           </article>
 
-          <article class="service-card reveal">
-            <div class="service-icon">👑</div>
-            <h3 class="service-name">VIP Package</h3>
-            <p class="service-desc">Cut + beard + hot towel shave + scalp massage. The full experience.</p>
-            <span class="service-price">$90</span>
+          <!-- Card 6 -->
+          <article class="service-card-item" data-category="combo">
+            <div>
+              <div class="service-header">
+                <div class="service-icon-box">👑</div>
+                <div class="service-price-box">
+                  <div class="service-cost">$110</div>
+                  <div class="service-duration">75 Mins</div>
+                </div>
+              </div>
+              <h3 class="service-name-title">The Royal VIP Experience</h3>
+              <p class="service-details-text">The ultimate luxury overhaul. Full skin fade, complete beard sculpt, black mask peel, scalp massage &amp; premium drink.</p>
+              <ul class="service-inclusions-list">
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Haircut + Beard Sculpt + Razor Finish</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Charcoal black mask pore detox</li>
+                <li><svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Relaxing peppermint scalp massage</li>
+              </ul>
+            </div>
+            <button class="btn btn-outline btn-book-service" data-service-name="The Royal VIP Experience" data-service-price="$110" type="button">Book VIP Experience</button>
           </article>
 
         </div>
       </div>
     </section>
 
-    <!-- ── Gallery ────────────────────────────────────────────── -->
-    <section class="gallery-section" id="gallery" aria-labelledby="gallery-title">
+    <!-- ── Dynamic Portfolio & Gallery Section ────────────────────────── -->
+    <section class="gallery-section" id="gallery">
       <div class="container">
-        <header class="gallery-header reveal">
-          <h2 class="section-title" id="gallery-title">Our <span>Work</span></h2>
-          <div class="gold-divider center"></div>
-          <p class="section-subtitle">Every photo is a story of craft, style, and confidence.</p>
+        
+        <header class="section-header">
+          <div class="eyebrow-pill">
+            <span>📷</span> Visual Proof
+          </div>
+          <h2 class="section-title">
+            THE MASTER <span class="text-gold-gradient">PORTFOLIO</span>
+          </h2>
+          <div class="gold-divider-crest">
+            <span>💈</span>
+          </div>
+          <p class="section-subtitle">
+            Explore our latest cuts, skin tapers, and beard restorations directly from our chairs.
+          </p>
         </header>
-        <div id="gallery-grid" role="list" aria-label="Gallery of barber work">
-          <p class="gallery-loading">Loading gallery...</p>
+
+        <!-- Category Filters -->
+        <div class="gallery-filters">
+          <button class="gallery-filter-btn active" data-filter="all">All Styles</button>
+          <button class="gallery-filter-btn" data-filter="fades">Fades &amp; Tapers</button>
+          <button class="gallery-filter-btn" data-filter="beards">Beard Sculpting</button>
+          <button class="gallery-filter-btn" data-filter="classics">Classics &amp; Crops</button>
+          <button class="gallery-filter-btn" data-filter="designs">Freestyle Art</button>
         </div>
+
+        <!-- Dynamic Grid Loaded by js/gallery.js -->
+        <div id="gallery-grid" role="list">
+          <div class="gallery-loading" style="text-align: center; grid-column: 1/-1; padding: 4rem 0; color: var(--gold-primary);">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem; animation: pulseRing 1.5s infinite;">✂️</div>
+            Loading master cuts...
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- ── Contact ────────────────────────────────────────────── -->
-    <section class="contact" id="contact" aria-labelledby="contact-title">
+    <!-- ── Master Barbers (Team Section) ─────────────────────────────── -->
+    <section class="barbers-section" id="barbers">
       <div class="container">
-        <div class="contact-grid">
-          <div class="contact-info reveal">
-            <h2 class="section-title" id="contact-title">Book Your <span>Session</span></h2>
-            <div class="gold-divider"></div>
-            <p class="section-subtitle">Ready for a fresh cut? Reach out or fill in the form and we'll get you scheduled.</p>
-
-            <div class="contact-item">
-              <div class="contact-item-icon" aria-hidden="true">📍</div>
-              <div>
-                <div class="contact-item-label">Location</div>
-                <div class="contact-item-value">123 Main Street, Your City, ST 00000</div>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-item-icon" aria-hidden="true">📞</div>
-              <div>
-                <div class="contact-item-label">Phone</div>
-                <div class="contact-item-value"><a href="tel:+15550000000">(555) 000-0000</a></div>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-item-icon" aria-hidden="true">📸</div>
-              <div>
-                <div class="contact-item-label">Instagram</div>
-                <div class="contact-item-value"><a href="https://instagram.com/beardedguys" target="_blank" rel="noopener">@beardedguys</a></div>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-item-icon" aria-hidden="true">🕐</div>
-              <div>
-                <div class="contact-item-label">Hours</div>
-                <div class="contact-item-value">Tue–Sat: 9am – 7pm · Sun: 10am – 4pm</div>
-              </div>
-            </div>
+        
+        <header class="section-header">
+          <div class="eyebrow-pill">
+            <span>💈</span> Behind The Chair
           </div>
-
-          <div class="reveal">
-            <form class="contact-form" name="booking" aria-label="Booking request form" novalidate>
-              <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="John Smith" autocomplete="name" required />
-              </div>
-              <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel" />
-              </div>
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="john@example.com" autocomplete="email" required />
-              </div>
-              <div class="form-group">
-                <label for="service">Preferred Service</label>
-                <select id="service" name="service">
-                  <option value="">Select a service…</option>
-                  <option>Classic Cut — $30</option>
-                  <option>Skin Fade — $40</option>
-                  <option>Beard Sculpt — $25</option>
-                  <option>Cut + Beard Combo — $60</option>
-                  <option>Hot Towel Shave — $35</option>
-                  <option>VIP Package — $90</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="message">Additional Notes</label>
-                <textarea id="message" name="message" placeholder="Any requests or preferred time slots…"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Booking Request</button>
-            </form>
+          <h2 class="section-title">
+            MEET THE <span class="text-gold-gradient">MASTER BARBERS</span>
+          </h2>
+          <div class="gold-divider-crest">
+            <span>✂️</span>
           </div>
+          <p class="section-subtitle">
+            Each artisan brings world-class technique, precision styling, and unwavering attention to detail.
+          </p>
+        </header>
+
+        <div class="barbers-grid">
+
+          <!-- Barber 1 -->
+          <article class="barber-card">
+            <div class="barber-photo-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80"
+                alt="Marcus Vance — Founder & Master Barber"
+                loading="lazy"
+              />
+            </div>
+            <div class="barber-info">
+              <h3 class="barber-name">Marcus Vance</h3>
+              <div class="barber-role">Founder &amp; Master Barber</div>
+              <p class="barber-bio">12 years perfecting scissor over comb and sharp skin tapers. Dedicated to elevating traditional craftsmanship.</p>
+              <button class="btn btn-outline btn-sm open-booking-btn" data-barber="Marcus Vance" type="button">Book with Marcus</button>
+            </div>
+          </article>
+
+          <!-- Barber 2 -->
+          <article class="barber-card">
+            <div class="barber-photo-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80"
+                alt="Leo Santana — Fade & Modern Texture Specialist"
+                loading="lazy"
+              />
+            </div>
+            <div class="barber-info">
+              <h3 class="barber-name">Leo Santana</h3>
+              <div class="barber-role">Fade &amp; Texture Specialist</div>
+              <p class="barber-bio">Master of razor-drop fades, textured crops, and razor design art. Trained across London and New York.</p>
+              <button class="btn btn-outline btn-sm open-booking-btn" data-barber="Leo Santana" type="button">Book with Leo</button>
+            </div>
+          </article>
+
+          <!-- Barber 3 -->
+          <article class="barber-card">
+            <div class="barber-photo-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80"
+                alt="Diego Cruz — Master Beard Artisan"
+                loading="lazy"
+              />
+            </div>
+            <div class="barber-info">
+              <h3 class="barber-name">Diego Cruz</h3>
+              <div class="barber-role">Master Beard Artisan</div>
+              <p class="barber-bio">The bearded specialist. Known citywide for flawless jawline lineups, hot towel shaves, and custom oil blending.</p>
+              <button class="btn btn-outline btn-sm open-booking-btn" data-barber="Diego Cruz" type="button">Book with Diego</button>
+            </div>
+          </article>
+
         </div>
+
+      </div>
+    </section>
+
+    <!-- ── Testimonials & Google Reviews ──────────────────────────────── -->
+    <section class="reviews-section" id="reviews">
+      <div class="container">
+        
+        <header class="section-header">
+          <div class="eyebrow-pill">
+            <span>⭐</span> Client Praises
+          </div>
+          <h2 class="section-title">
+            WORD ON THE <span class="text-gold-gradient">STREET</span>
+          </h2>
+          <div class="gold-divider-crest">
+            <span>★</span>
+          </div>
+          <p class="section-subtitle">
+            Don't take our word for it. Here is what gentlemen say after stepping out of our chairs.
+          </p>
+        </header>
+
+        <div class="reviews-grid">
+
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Hands down the best barbershop experience I've had in 10 years. Marcus did a skin fade and beard sculpt that completely changed my look. The hot towel and cold brew made it unforgettable."</p>
+            <div class="review-author-wrap">
+              <img class="review-avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="David K." />
+              <div>
+                <div class="review-author-name">David K.</div>
+                <div class="review-verified">✓ Verified Google Review</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Diego is a true beard wizard. My beard was uneven and wild — he shaped it into a clean, razor-sharp masterpiece. Plus, their signature cedarwood beard oil smells phenomenal."</p>
+            <div class="review-author-wrap">
+              <img class="review-avatar" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&auto=format&fit=crop&q=80" alt="James R." />
+              <div>
+                <div class="review-author-name">James R.</div>
+                <div class="review-verified">✓ Verified Google Review</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"The vibe, the jazz in the background, the razor precision... everything is 10/10. Easy online booking and zero wait time when you arrive. Can't recommend Leo and the crew enough!"</p>
+            <div class="review-author-wrap">
+              <img class="review-avatar" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&auto=format&fit=crop&q=80" alt="Michael S." />
+              <div>
+                <div class="review-author-name">Michael S.</div>
+                <div class="review-verified">✓ Verified Google Review</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Location, Hours & Contact Section ──────────────────────────── -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        
+        <header class="section-header">
+          <div class="eyebrow-pill">
+            <span>📍</span> Find Our Chair
+          </div>
+          <h2 class="section-title">
+            VISIT THE <span class="text-gold-gradient">BARBERSHOP</span>
+          </h2>
+          <div class="gold-divider-crest">
+            <span>💈</span>
+          </div>
+          <p class="section-subtitle">
+            Centrally located in the heart of downtown. Walk-ins always welcome, appointments recommended.
+          </p>
+        </header>
+
+        <div class="contact-layout-grid">
+          
+          <!-- Hours & Details Card -->
+          <div class="contact-card-box">
+            <h3 class="font-serif" style="font-size: 1.6rem; color: var(--text-pure); margin-bottom: 0.5rem;">Operating Hours</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem;">We operate 6 days a week with convenient evening slots.</p>
+
+            <table class="hours-table">
+              <tbody>
+                <tr id="hours-mon"><td>Monday</td><td>Closed</td></tr>
+                <tr id="hours-tue"><td>Tuesday</td><td>9:00 AM – 7:00 PM</td></tr>
+                <tr id="hours-wed"><td>Wednesday</td><td>9:00 AM – 7:00 PM</td></tr>
+                <tr id="hours-thu"><td>Thursday</td><td>9:00 AM – 8:00 PM</td></tr>
+                <tr id="hours-fri"><td>Friday</td><td>9:00 AM – 8:00 PM</td></tr>
+                <tr id="hours-sat"><td>Saturday</td><td>9:00 AM – 6:00 PM</td></tr>
+                <tr id="hours-sun"><td>Sunday</td><td>10:00 AM – 4:00 PM</td></tr>
+              </tbody>
+            </table>
+
+            <div class="contact-quick-list">
+              <div class="contact-quick-item">
+                <div class="contact-icon-circle">📍</div>
+                <div>
+                  <div style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Location</div>
+                  <div style="font-weight:600; color:var(--text-pure);">123 Main Street, Suite 4B, Metro City</div>
+                </div>
+              </div>
+
+              <div class="contact-quick-item">
+                <div class="contact-icon-circle">📞</div>
+                <div>
+                  <div style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Direct Phone</div>
+                  <div style="font-weight:600;"><a href="tel:+15552345678">(555) 234-5678</a></div>
+                </div>
+              </div>
+
+              <div class="contact-quick-item">
+                <div class="contact-icon-circle">✉️</div>
+                <div>
+                  <div style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Email Inquiries</div>
+                  <div style="font-weight:600;"><a href="mailto:info@beardedguys.com">info@beardedguys.com</a></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <button class="btn btn-primary open-booking-btn" style="width: 100%;" type="button">
+                Book An Appointment Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Stylized Map & Visual Box -->
+          <div class="contact-card-box" style="background: var(--bg-surface-2); display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;">
+            <div>
+              <div class="eyebrow-pill" style="margin-bottom: 1rem;">
+                <span>🧭</span> Downtown Location
+              </div>
+              <h3 class="font-serif" style="font-size: 1.5rem; color: var(--text-pure); margin-bottom: 0.75rem;">Easy Parking &amp; Transit</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                Complimentary client parking validation available in the garage directly behind the shop. Located 2 minutes from Metro Central Station.
+              </p>
+            </div>
+
+            <!-- Stylized Dark Map Preview -->
+            <div style="position: relative; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--gold-border); aspect-ratio: 16/10; background: #111116;">
+              <img
+                src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&auto=format&fit=crop&q=80"
+                alt="Map overview of location"
+                style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) contrast(1.2) hue-rotate(190deg);"
+              />
+              <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(11,11,14,0.45);">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--gold-primary); color: #000; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: var(--shadow-gold-lg); animation: pulseRing 2s infinite;">
+                  📍
+                </div>
+                <div style="background: rgba(0,0,0,0.85); border: 1px solid var(--gold-primary); color: #fff; padding: 0.4rem 1rem; border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: 700; margin-top: 0.75rem;">
+                  Bearded Guys Barbershop
+                </div>
+              </div>
+            </div>
+
+            <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-outline" style="width: 100%;">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+              Get GPS Directions
+            </a>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <!-- ── Interactive Booking Modal ────────────────────────────────────── -->
+  <div class="booking-modal" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="modal-booking-title">
+    <div class="booking-backdrop" id="booking-backdrop"></div>
+    <div class="booking-dialog">
+      <div class="booking-header">
+        <div>
+          <span class="eyebrow-pill" style="font-size: 0.7rem; margin-bottom: 0.4rem;">⚡ Easy Online Booking</span>
+          <h2 class="booking-title" id="modal-booking-title">RESERVE YOUR CHAIR</h2>
+          <p class="booking-sub">Choose your preferred service, barber, and date.</p>
+        </div>
+        <button class="booking-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
+      </div>
+
+      <form class="booking-form" id="appointment-form">
+        <!-- Service Selection -->
+        <div class="form-group">
+          <label for="book-service">Select Service</label>
+          <select id="book-service" class="form-control" required>
+            <option value="Razor Skin Fade & Taper — $45">Razor Skin Fade &amp; Taper — $45 (45 min)</option>
+            <option value="The Complete Cut + Beard Combo — $68">The Complete Cut + Beard Combo — $68 (60 min)</option>
+            <option value="The Classic Gentlemen's Cut — $35">The Classic Gentlemen's Cut — $35 (35 min)</option>
+            <option value="Master Beard Sculpt & Lineup — $30">Master Beard Sculpt &amp; Lineup — $30 (30 min)</option>
+            <option value="Traditional Hot Towel Shave — $40">Traditional Hot Towel Shave — $40 (40 min)</option>
+            <option value="The Royal VIP Experience — $110">The Royal VIP Experience — $110 (75 min)</option>
+          </select>
+        </div>
+
+        <!-- Barber Selection -->
+        <div class="form-group">
+          <label for="book-barber">Preferred Barber</label>
+          <select id="book-barber" class="form-control">
+            <option value="Any Available Master Barber">First Available Master Barber</option>
+            <option value="Marcus Vance">Marcus Vance (Master Barber)</option>
+            <option value="Leo Santana">Leo Santana (Fade Specialist)</option>
+            <option value="Diego Cruz">Diego Cruz (Beard Artisan)</option>
+          </select>
+        </div>
+
+        <!-- Date and Time -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-date">Preferred Date</label>
+            <input type="date" id="book-date" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="book-time">Preferred Time</label>
+            <select id="book-time" class="form-control" required>
+              <option value="09:30 AM">09:30 AM</option>
+              <option value="10:30 AM">10:30 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="01:00 PM">01:00 PM</option>
+              <option value="02:00 PM">02:00 PM</option>
+              <option value="03:30 PM">03:30 PM</option>
+              <option value="05:00 PM">05:00 PM</option>
+              <option value="06:00 PM">06:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-name">Your Full Name</label>
+            <input type="text" id="book-name" class="form-control" placeholder="Marcus Aurelius" required />
+          </div>
+          <div class="form-group">
+            <label for="book-phone">Phone Number</label>
+            <input type="tel" id="book-phone" class="form-control" placeholder="(555) 000-0000" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="book-email">Email (for Confirmation)</label>
+          <input type="email" id="book-email" class="form-control" placeholder="marcus@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="book-notes">Special Requests / Notes (Optional)</label>
+          <textarea id="book-notes" class="form-control" rows="2" placeholder="Skin sensitivity, high taper preference, beverage choice..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+          Confirm &amp; Reserve Appointment
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────── -->
   <footer class="site-footer">
-    <div class="footer-inner">
-      <p class="footer-copy">&copy; <span id="year"></span> Bearded Guys Barbershop. All rights reserved.</p>
-      <a href="login.html" class="footer-link">Owner Login</a>
+    <div class="container">
+      
+      <div class="footer-top-grid">
+        <!-- Brand -->
+        <div class="footer-brand-col">
+          <img src="assets/logo.svg" alt="Bearded Guys Barbershop" width="200" height="48" />
+          <p class="footer-bio">
+            A premium gentlemen's barbershop dedicated to master scissor craft, razor-sharp fades, and traditional beard sculpting rituals.
+          </p>
+          <div style="color: var(--gold-primary); font-size: 0.85rem; font-weight: 700;">
+            EST. 2018 • CRAFT &amp; PRIDE
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links-list">
+            <li><a href="#about">About Our Craft</a></li>
+            <li><a href="#services">Services &amp; Pricing</a></li>
+            <li><a href="#gallery">Client Gallery</a></li>
+            <li><a href="#barbers">Master Barbers</a></li>
+            <li><a href="#contact">Location &amp; Hours</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="footer-heading">Signature Cuts</h4>
+          <ul class="footer-links-list">
+            <li><a href="#services">Razor Skin Fade</a></li>
+            <li><a href="#services">Beard Sculpt &amp; Lineup</a></li>
+            <li><a href="#services">Hot Towel Shave</a></li>
+            <li><a href="#services">VIP Grooming Package</a></li>
+            <li><a href="#services">Executive Pompadour</a></li>
+          </ul>
+        </div>
+
+        <!-- Owner / Admin Portal -->
+        <div>
+          <h4 class="footer-heading">Staff &amp; Admin</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Barbershop staff and owner portal for live gallery management and bookings.
+          </p>
+          <a href="login.html" class="btn btn-outline btn-sm" style="width: 100%;">
+            🔒 Owner Portal Login
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          &copy; <span id="footer-year">2026</span> Bearded Guys Barbershop &amp; Grooming Co. All rights reserved.
+        </div>
+        <div>
+          Designed with Craft &amp; Precision • Powered by Supabase
+        </div>
+      </div>
+
     </div>
   </footer>
 
-  <!-- ── Scripts ────────────────────────────────────────────── -->
-  <!-- Supabase credentials (git-ignored — copy config.example.js → config.js) -->
+  <!-- ── Scripts ──────────────────────────────────────────────────────── -->
+  <!-- Configuration (Safe Loader) -->
   <script src="js/config.js"></script>
 
-  <!-- Gallery + scroll reveal -->
+  <!-- Interactive Logic -->
   <script type="module">
     import { loadGalleryImages } from './js/gallery.js';
 
-    // ── Load gallery ─────────────────────────────────────────
+    // 1. Initialize Dynamic Gallery
     loadGalleryImages();
 
-    // ── Mobile nav toggle ─────────────────────────────────────
-    const toggle = document.querySelector('.nav-toggle');
-    const navLinks = document.getElementById('nav-links');
-    toggle?.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      toggle.classList.toggle('open', isOpen);
-      toggle.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    // Close nav on link click
-    navLinks?.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        toggle?.classList.remove('open');
-        toggle?.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // ── Scroll reveal ─────────────────────────────────────────
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // ── Footer year ───────────────────────────────────────────
-    const yearEl = document.getElementById('year');
+    // 2. Footer Year
+    const yearEl = document.getElementById('footer-year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // ── Contact form (stub — connect to Formspree, Netlify, etc.) ──
-    const form = document.querySelector('.contact-form');
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Thanks! We\'ll be in touch to confirm your booking.');
-      form.reset();
+    // 3. Set minimum date for booking to today
+    const dateInput = document.getElementById('book-date');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+      dateInput.value = today;
+    }
+
+    // 4. Highlight Today's Operating Hours
+    const dayMap = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const currentDay = dayMap[new Date().getDay()];
+    const todayRow = document.getElementById(`hours-${currentDay}`);
+    if (todayRow) {
+      todayRow.classList.add('today-row');
+    }
+
+    // 5. Sticky Navigation Scroll Effect
+    const navHeader = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navHeader?.classList.add('scrolled');
+      } else {
+        navHeader?.classList.remove('scrolled');
+      }
     });
+
+    // 6. Mobile Menu Toggle
+    const mobileToggle = document.getElementById('mobile-toggle-btn');
+    const navMenu = document.getElementById('nav-menu');
+    mobileToggle?.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    navMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        mobileToggle?.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // 7. Services Category Filter Tabs
+    const serviceFilterBtns = document.querySelectorAll('.filter-tab-btn');
+    const serviceCards = document.querySelectorAll('.service-card-item');
+
+    serviceFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        serviceFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.getAttribute('data-category');
+
+        serviceCards.forEach(card => {
+          if (cat === 'all' || card.getAttribute('data-category') === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 8. Booking Modal Triggers
+    const bookingModal = document.getElementById('booking-modal');
+    const bookingBackdrop = document.getElementById('booking-backdrop');
+    const bookingCloseBtn = document.getElementById('modal-close-btn');
+    const serviceSelect = document.getElementById('book-service');
+    const barberSelect = document.getElementById('book-barber');
+
+    function openBookingModal(preselectedService = '', preselectedBarber = '') {
+      if (preselectedService && serviceSelect) {
+        // Find matching option
+        for (let opt of serviceSelect.options) {
+          if (opt.value.toLowerCase().includes(preselectedService.toLowerCase())) {
+            serviceSelect.value = opt.value;
+            break;
+          }
+        }
+      }
+      if (preselectedBarber && barberSelect) {
+        for (let opt of barberSelect.options) {
+          if (opt.value.toLowerCase().includes(preselectedBarber.toLowerCase())) {
+            barberSelect.value = opt.value;
+            break;
+          }
+        }
+      }
+
+      bookingModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBookingModal() {
+      bookingModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.open-booking-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const barber = btn.getAttribute('data-barber') || '';
+        openBookingModal('', barber);
+      });
+    });
+
+    document.querySelectorAll('.btn-book-service').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const serviceName = btn.getAttribute('data-service-name') || '';
+        openBookingModal(serviceName, '');
+      });
+    });
+
+    bookingCloseBtn?.addEventListener('click', closeBookingModal);
+    bookingBackdrop?.addEventListener('click', closeBookingModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && bookingModal.classList.contains('active')) {
+        closeBookingModal();
+      }
+    });
+
+    // 9. Booking Form Submit (Toast Confirmation)
+    const appointmentForm = document.getElementById('appointment-form');
+    appointmentForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const clientName = document.getElementById('book-name').value;
+      const service = serviceSelect.value.split('—')[0];
+      const date = dateInput.value;
+      const time = document.getElementById('book-time').value;
+
+      closeBookingModal();
+      showToast(`Appointment Confirmed for ${clientName}! 💈 ${service} on ${date} at ${time}.`);
+      appointmentForm.reset();
+    });
+
+    function showToast(message) {
+      let toast = document.querySelector('.toast-notification');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        document.body.appendChild(toast);
+      }
+
+      toast.innerHTML = `
+        <span style="font-size:1.4rem;">✂️</span>
+        <div>
+          <div style="font-weight:700; color:var(--gold-light);">Booking Confirmed!</div>
+          <div style="font-size:0.85rem; color:var(--text-muted);">${message}</div>
+        </div>
+      `;
+
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 5500);
+    }
   </script>
 
 </body>

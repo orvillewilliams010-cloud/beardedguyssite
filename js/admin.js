@@ -1,204 +1,358 @@
 /**
- * Admin Dashboard Logic
- * Handles auth guard, image upload (drag-drop + file picker),
- * gallery management, and delete operations via Supabase Storage.
+ * Admin Dashboard & Gallery Manager Engine
+ * Handles Supabase auth guard, live credentials update, image uploads, and delete operations.
  */
 
-import { supabase, BUCKET } from './supabase-client.js';
-import { requireAuth, logout } from './auth.js';
+import { supabase, BUCKET, isSupabaseConfigured, saveCredentials } from './supabase-client.js';
+import { requireAuth, logout, getSession } from './auth.js';
+import { CURATED_GALLERY } from './gallery.js';
 
-// ─── Init ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
-  // 1. Auth guard — redirect to login if no session
+  // 1. Auth Guard
   const session = await requireAuth();
   if (!session) return;
 
-  // Show logged-in user email
-  const emailEl = document.getElementById('admin-email');
-  if (emailEl) emailEl.textContent = session.user.email;
+  // 2. Populate User Profile
+  const email = session.user?.email || 'owner@beardedguys.com';
+  const emailEl = document.getElementById('admin-user-email');
+  const avatarEl = document.getElementById('admin-user-avatar');
+  if (emailEl) emailEl.textContent = email;
+  if (avatarEl) avatarEl.textContent = email.charAt(0).toUpperCase();
 
-  // 2. Load existing gallery
+  // 3. Populate Supabase credentials fields
+  const urlInput = document.getElementById('sb-url-input');
+  const keyInput = document.getElementById('sb-key-input');
+  const bucketInput = document.getElementById('sb-bucket-input');
+
+  if (urlInput) urlInput.value = localStorage.getItem('bearded_supabase_url') || (window.SUPABASE_CONFIG?.url) || '';
+  if (keyInput) keyInput.value = localStorage.getItem('bearded_supabase_key') || (window.SUPABASE_CONFIG?.anonKey) || '';
+  if (bucketInput) bucketInput.value = localStorage.getItem('bearded_supabase_bucket') || (window.SUPABASE_CONFIG?.bucket) || 'gallery';
+
+  // 4. Update Status Indicators
+  updateConnectionBadge();
+
+  // 5. Load Admin Gallery
   await loadAdminGallery();
 
-  // 3. Wire up upload form
+  // 6. Setup Event Handlers
   setupUploadZone();
+  setupSettingsForm();
 
-  // 4. Logout button
-  const logoutBtn = document.getElementById('logout-btn');
-  if (logoutBtn) logoutBtn.addEventListener('click', logout);
+  // Sign out button
+  document.getElementById('signout-btn')?.addEventListener('click', logout);
+
+  // Mobile sidebar toggle
+  const sidebar = document.getElementById('admin-sidebar');
+  const toggleBtn = document.getElementById('menu-toggle');
+  toggleBtn?.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
 });
 
-// ─── Admin Gallery ────────────────────────────────────────────────────────────
+/**
+ * Check and display connection status
+ */
+function updateConnectionBadge() {
+  const badge = document.getElementById('supabase-status-badge');
+  const countEl = document.getElementById('metric-supabase-status');
+  if (isSupabaseConfigured()) {
+    if (badge) {
+      badge.innerHTML = '<span style="color:var(--accent-green)">🟢 Supabase Live Cloud Connected</span>';
+    }
+    if (countEl) countEl.innerHTML = '<span style="color:var(--accent-green)">Connected</span>';
+  } else {
+    if (badge) {
+      badge.innerHTML = '<span style="color:var(--gold-primary)">🟡 Demo Mode (Enter keys below to enable Cloud Storage)</span>';
+    }
+    if (countEl) countEl.innerHTML = '<span style="color:var(--gold-primary)">Local/Demo</span>';
+  }
+}
+
+/**
+ * Handle Settings Form (Saving Supabase keys in browser)
+ */
+function setupSettingsForm() {
+  const form = document.getElementById('supabase-settings-form');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const url = document.getElementById('sb-url-input').value.trim();
+    const key = document.getElementById('sb-key-input').value.trim();
+    const bucket = document.getElementById('sb-bucket-input').value.trim() || 'gallery';
+
+    if (url && key) {
+      saveCredentials(url, key, bucket);
+      showToast('Credentials saved! Reloading dashboard...');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } else {
+      showToast('Please enter both Supabase URL and Anon Key.', true);
+    }
+  });
+}
+
+/**
+ * Load and render images in admin grid
+ */
 async function loadAdminGallery() {
   const grid = document.getElementById('admin-gallery-grid');
+  const countEl = document.getElementById('metric-total-photos');
+  const lastUploadEl = document.getElementById('metric-last-upload');
   if (!grid) return;
 
-  grid.innerHTML = '<p class="admin-loading">Loading images...</p>';
+  grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--gold-primary);">Loading gallery images...</div>';
 
-  const { data: files, error } = await supabase.storage.from(BUCKET).list('', {
-    limit: 200,
-    sortBy: { column: 'created_at', order: 'desc' },
-  });
+  let items = [];
 
-  if (error) {
-    grid.innerHTML = `<p class="admin-error">Error loading gallery: ${error.message}</p>`;
-    return;
+  // If Supabase is connected, fetch files
+  if (isSupabaseConfigured() && supabase) {
+    try {
+      const { data: files, error } = await supabase.storage.from(BUCKET).list('', {
+        limit: 100,
+        sortBy: { column: 'created_at', order: 'desc' }
+      });
+
+      if (!error && files) {
+        const imageFiles = files.filter(f => /\.(jpg|jpeg|png|webp|gif|avif)$/i.test(f.name));
+        items = imageFiles.map(file => {
+          const { data: { publicUrl } } = supabase.storage.from(BUCKET).getPublicUrl(file.name);
+          return {
+            id: file.name,
+            name: file.name,
+            title: file.name.replace(/[-_]/g, ' ').replace(/\.[^/.]+$/, ''),
+            src: publicUrl,
+            isSupabase: true
+          };
+        });
+      }
+    } catch (e) {
+      console.warn('Supabase storage error:', e);
+    }
   }
 
-  const imageFiles = (files || []).filter(f => /\.(jpg|jpeg|png|webp|gif)$/i.test(f.name));
+  // Also include demo local uploads if any
+  const localUploads = localStorage.getItem('bearded_demo_uploads');
+  if (localUploads) {
+    try {
+      const parsed = JSON.parse(localUploads);
+      if (Array.isArray(parsed)) {
+        items = [...parsed.map(p => ({ ...p, name: p.id, isLocal: true })), ...items];
+      }
+    } catch (e) {}
+  }
 
-  if (imageFiles.length === 0) {
-    grid.innerHTML = '<p class="admin-empty">No images uploaded yet. Use the form above to add your first photo!</p>';
-    return;
+  // If completely empty, show curated cuts for visual reference
+  if (items.length === 0) {
+    items = CURATED_GALLERY.map(c => ({
+      id: c.id,
+      name: c.title,
+      title: c.title,
+      src: c.thumb || c.src,
+      isCurated: true
+    }));
+  }
+
+  if (countEl) countEl.textContent = items.length;
+  if (lastUploadEl && items.length > 0) {
+    lastUploadEl.textContent = 'Today';
   }
 
   grid.innerHTML = '';
-  imageFiles.forEach(file => renderAdminCard(file, grid));
+
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'admin-image-item';
+    card.innerHTML = `
+      <img src="${item.src}" alt="${item.title}" loading="lazy" />
+      <div class="admin-item-overlay">
+        <button class="btn-delete-img" data-id="${item.id}" data-is-supabase="${Boolean(item.isSupabase)}" data-is-local="${Boolean(item.isLocal)}" type="button">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          Delete
+        </button>
+        <div class="admin-item-title">${item.title}</div>
+      </div>
+    `;
+
+    card.querySelector('.btn-delete-img')?.addEventListener('click', () => {
+      deleteImage(item, card);
+    });
+
+    grid.appendChild(card);
+  });
 }
 
-function renderAdminCard(file, grid) {
-  const { data: { publicUrl } } = supabase.storage.from(BUCKET).getPublicUrl(file.name);
+/**
+ * Delete an image
+ */
+async function deleteImage(item, cardEl) {
+  if (!confirm(`Are you sure you want to delete "${item.title}"?`)) return;
 
-  const card = document.createElement('div');
-  card.className = 'admin-img-card';
-  card.dataset.filename = file.name;
-  card.innerHTML = `
-    <img src="${publicUrl}" alt="${file.name}" loading="lazy" />
-    <div class="admin-img-overlay">
-      <span class="admin-img-name">${file.name}</span>
-      <button class="btn-delete" aria-label="Delete ${file.name}" data-filename="${file.name}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
-        </svg>
-        Delete
-      </button>
-    </div>
-  `;
-
-  card.querySelector('.btn-delete').addEventListener('click', () => deleteImage(file.name, card));
-  grid.appendChild(card);
-}
-
-// ─── Delete ───────────────────────────────────────────────────────────────────
-async function deleteImage(filename, cardEl) {
-  if (!confirm(`Delete "${filename}"? This cannot be undone.`)) return;
-
-  cardEl.classList.add('deleting');
-  const { error } = await supabase.storage.from(BUCKET).remove([filename]);
-
-  if (error) {
-    showToast(`Delete failed: ${error.message}`, 'error');
-    cardEl.classList.remove('deleting');
-    return;
+  if (item.isSupabase && isSupabaseConfigured() && supabase) {
+    try {
+      const { error } = await supabase.storage.from(BUCKET).remove([item.id]);
+      if (error) {
+        showToast(`Delete failed: ${error.message}`, true);
+        return;
+      }
+    } catch (err) {
+      showToast('Error removing from Supabase.', true);
+      return;
+    }
+  } else if (item.isLocal) {
+    let local = JSON.parse(localStorage.getItem('bearded_demo_uploads') || '[]');
+    local = local.filter(l => l.id !== item.id);
+    localStorage.setItem('bearded_demo_uploads', JSON.stringify(local));
   }
 
-  cardEl.style.animation = 'fadeOut 0.3s forwards';
-  setTimeout(() => {
-    cardEl.remove();
-    const grid = document.getElementById('admin-gallery-grid');
-    if (grid && grid.children.length === 0) {
-      grid.innerHTML = '<p class="admin-empty">No images uploaded yet.</p>';
-    }
-  }, 320);
-
-  showToast('Image deleted successfully.', 'success');
+  cardEl.remove();
+  showToast('Photo removed from portfolio.');
+  
+  const countEl = document.getElementById('metric-total-photos');
+  if (countEl) {
+    const current = parseInt(countEl.textContent) || 1;
+    countEl.textContent = Math.max(0, current - 1);
+  }
 }
 
-// ─── Upload Zone ──────────────────────────────────────────────────────────────
+/**
+ * Drag and Drop Upload System
+ */
 function setupUploadZone() {
   const dropZone = document.getElementById('drop-zone');
   const fileInput = document.getElementById('file-input');
-  const uploadBtn = document.getElementById('upload-btn');
-  const progressBar = document.getElementById('upload-progress');
-  const progressWrap = document.getElementById('progress-wrap');
+  const chooseBtn = document.getElementById('choose-files-btn');
+  const progressWrap = document.getElementById('upload-progress-wrap');
+  const progressFill = document.getElementById('progress-bar-fill');
+  const progressStatus = document.getElementById('upload-status-text');
 
   if (!dropZone || !fileInput) return;
 
-  // Click to browse
-  dropZone.addEventListener('click', () => fileInput.click());
-  uploadBtn?.addEventListener('click', (e) => { e.stopPropagation(); fileInput.click(); });
-
-  // File input change
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files.length > 0) handleFiles(Array.from(fileInput.files));
+  chooseBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    fileInput.click();
   });
 
-  // Drag-and-drop events
+  dropZone.addEventListener('click', () => fileInput.click());
+
   dropZone.addEventListener('dragover', (e) => {
     e.preventDefault();
-    dropZone.classList.add('drag-over');
+    dropZone.classList.add('dragover');
   });
-  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+
+  dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('dragover');
+  });
+
   dropZone.addEventListener('drop', (e) => {
     e.preventDefault();
-    dropZone.classList.remove('drag-over');
-    const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
-    if (files.length > 0) handleFiles(files);
-    else showToast('Please drop image files only (JPG, PNG, WebP).', 'error');
+    dropZone.classList.remove('dragover');
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      handleFileUploads(Array.from(e.dataTransfer.files));
+    }
   });
 
-  async function handleFiles(files) {
-    if (progressWrap) progressWrap.hidden = false;
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+      handleFileUploads(Array.from(fileInput.files));
+    }
+  });
 
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const pct = Math.round(((i) / files.length) * 100);
-      if (progressBar) progressBar.value = pct;
-
-      await uploadImage(file);
+  async function handleFileUploads(files) {
+    const imageFiles = files.filter(f => f.type.startsWith('image/'));
+    if (imageFiles.length === 0) {
+      showToast('Please select valid image files (JPG, PNG, WebP).', true);
+      return;
     }
 
-    if (progressBar) progressBar.value = 100;
-    setTimeout(() => {
-      if (progressWrap) progressWrap.hidden = true;
-      if (progressBar) progressBar.value = 0;
-    }, 800);
+    const titleInput = document.getElementById('upload-title-input');
+    const categorySelect = document.getElementById('upload-cat-select');
+    const customTitle = titleInput ? titleInput.value.trim() : '';
+    const category = categorySelect ? categorySelect.value : 'fades';
 
-    // Refresh gallery
-    await loadAdminGallery();
-    fileInput.value = '';
+    progressWrap?.classList.add('show');
+    if (progressFill) progressFill.style.width = '10%';
+    if (progressStatus) progressStatus.textContent = `Uploading ${imageFiles.length} photo(s)...`;
+
+    for (let i = 0; i < imageFiles.length; i++) {
+      const file = imageFiles[i];
+      const percent = Math.round(((i + 1) / imageFiles.length) * 100);
+
+      if (isSupabaseConfigured() && supabase) {
+        // Upload directly to Supabase Storage Bucket
+        const ext = file.name.split('.').pop();
+        const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+
+        try {
+          const { data, error } = await supabase.storage.from(BUCKET).upload(safeName, file, {
+            cacheControl: '3600',
+            upsert: false,
+            contentType: file.type
+          });
+
+          if (error) {
+            console.error('Supabase upload error:', error);
+            showToast(`Upload error for ${file.name}: ${error.message}`, true);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      } else {
+        // Save to demo local state using FileReader
+        await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const newItem = {
+              id: `local-${Date.now()}-${i}`,
+              title: customTitle || file.name.replace(/\.[^/.]+$/, ''),
+              category: category,
+              tag: 'New Upload',
+              barber: 'Master Barber',
+              src: e.target.result,
+              thumb: e.target.result,
+              description: 'Freshly uploaded cut.'
+            };
+            const existing = JSON.parse(localStorage.getItem('bearded_demo_uploads') || '[]');
+            existing.unshift(newItem);
+            localStorage.setItem('bearded_demo_uploads', JSON.stringify(existing));
+            resolve();
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      if (progressFill) progressFill.style.width = `${percent}%`;
+    }
+
+    if (progressStatus) progressStatus.textContent = 'Upload Complete! Refreshing gallery...';
+
+    setTimeout(async () => {
+      progressWrap?.classList.remove('show');
+      if (progressFill) progressFill.style.width = '0%';
+      fileInput.value = '';
+      if (titleInput) titleInput.value = '';
+      showToast('Photos successfully uploaded to gallery!');
+      await loadAdminGallery();
+    }, 900);
   }
 }
 
-// ─── Upload ───────────────────────────────────────────────────────────────────
-async function uploadImage(file) {
-  const ext = file.name.split('.').pop();
-  const safeName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-
-  const { error } = await supabase.storage.from(BUCKET).upload(safeName, file, {
-    cacheControl: '3600',
-    upsert: false,
-    contentType: file.type,
-  });
-
-  if (error) {
-    showToast(`Upload failed for "${file.name}": ${error.message}`, 'error');
-    return;
+/**
+ * Toast helper
+ */
+function showToast(message, isError = false) {
+  let toast = document.getElementById('admin-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'admin-toast';
+    toast.className = 'toast-bar';
+    document.body.appendChild(toast);
   }
 
-  showToast(`"${file.name}" uploaded!`, 'success');
-}
-
-// ─── Toast Notifications ──────────────────────────────────────────────────────
-function showToast(message, type = 'success') {
-  let container = document.getElementById('toast-container');
-  if (!container) {
-    container = document.createElement('div');
-    container.id = 'toast-container';
-    document.body.appendChild(container);
-  }
-
-  const toast = document.createElement('div');
-  toast.className = `toast toast--${type}`;
-  toast.setAttribute('role', 'status');
-  toast.setAttribute('aria-live', 'polite');
-  toast.textContent = message;
-
-  container.appendChild(toast);
-  requestAnimationFrame(() => toast.classList.add('toast--visible'));
+  toast.style.borderColor = isError ? 'var(--accent-red)' : 'var(--gold-primary)';
+  toast.innerHTML = isError ? `⚠️ ${message}` : `✓ ${message}`;
+  toast.classList.add('active');
 
   setTimeout(() => {
-    toast.classList.remove('toast--visible');
-    toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+    toast.classList.remove('active');
   }, 4000);
 }
