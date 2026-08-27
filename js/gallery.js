@@ -6,84 +6,76 @@
 
 import { supabase, BUCKET, isSupabaseConfigured } from './supabase-client.js';
 
-// Curated high-resolution barbershop cuts for instant rich presentation
+// Curated high-resolution barbershop cuts without mentioning individual barber names
 export const CURATED_GALLERY = [
   {
     id: 'curated-1',
-    title: 'Razor Low Skin Fade & Beard Sculpt',
+    title: 'Precision Razor Skin Fade & Beard Lineup',
     category: 'fades',
-    tag: 'Signature Fade',
-    barber: 'Marcus Vance',
+    tag: 'Skin Fade',
     src: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=900&auto=format&fit=crop&q=85',
     thumb: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=600&auto=format&fit=crop&q=80',
-    description: 'Ultra-clean zero taper fade paired with precision geometric beard line-up and organic oil finish.'
+    description: 'Zero taper skin fade with seamless blending and sharp razor-crisped beard outline.'
   },
   {
     id: 'curated-2',
-    title: 'Textured Crop with Mid Drop Fade',
+    title: 'Textured Crop & Mid Drop Fade',
     category: 'fades',
     tag: 'Modern Crop',
-    barber: 'Leo Santana',
     src: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=900&auto=format&fit=crop&q=85',
     thumb: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&auto=format&fit=crop&q=80',
-    description: 'Heavy point-cut texture on top with matte clay styling and a seamless drop fade around the ears.'
+    description: 'Point-cut heavy top texture with matte clay finish and a clean drop fade around the ears.'
   },
   {
     id: 'curated-3',
-    title: 'Full Lumberjack Beard Sculpt & Line-Up',
+    title: 'Full Beard Sculpting & Oil Treatment',
     category: 'beards',
-    tag: 'Beard Master',
-    barber: 'Diego Cruz',
+    tag: 'Beard Sculpt',
     src: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900&auto=format&fit=crop&q=85',
     thumb: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&auto=format&fit=crop&q=80',
-    description: 'Freehand scissor tapered full beard shaped to client jawline, finished with cedarwood hot balm.'
+    description: 'Custom jawline contouring, bulk tapering, and warm cedarwood beard oil conditioning.'
   },
   {
     id: 'curated-4',
-    title: 'Classic Executive Pompadour',
+    title: 'Classic Executive Scissor Taper',
     category: 'classics',
-    tag: 'Gentlemen Classic',
-    barber: 'Marcus Vance',
+    tag: 'Classic Cut',
     src: 'https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=900&auto=format&fit=crop&q=85',
     thumb: 'https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=600&auto=format&fit=crop&q=80',
-    description: 'High volume side part pompadour with classic scissor taper and high-shine water pomade.'
+    description: 'Clean side part taper with natural sheen finish and crisp neckline detailing.'
   },
   {
     id: 'curated-5',
-    title: 'Hot Towel Straight Razor Beard Shave',
+    title: 'Hot Towel Straight Blade Shave',
     category: 'beards',
     tag: 'Hot Towel Ritual',
-    barber: 'Diego Cruz',
     src: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=900&auto=format&fit=crop&q=85',
     thumb: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&auto=format&fit=crop&q=80',
-    description: 'Traditional 3-step hot towel treatment, pre-shave eucalyptus lather, and Japanese straight blade shave.'
+    description: 'Double eucalyptus hot steam wrap with rich lather and Japanese straight blade shave.'
   },
   {
     id: 'curated-6',
-    title: 'High Skin Taper & Slicked Undercut',
-    category: 'fades',
-    tag: 'Taper Fade',
-    barber: 'Leo Santana',
-    src: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=900&auto=format&fit=crop&q=85',
-    thumb: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&auto=format&fit=crop&q=80',
-    description: 'Disconnected undercut styled back with natural sheen and crispy neckline detailing.'
+    title: 'Curly Fade & Sponge Top Finish',
+    category: 'textured',
+    tag: 'Textured & Curly',
+    src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&auto=format&fit=crop&q=85',
+    thumb: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80',
+    description: 'Specialist curl definition, sponge texture styling, and crispy perimeter tape.'
   },
   {
     id: 'curated-7',
-    title: 'Custom Curved Hair Tattoo & Burst Fade',
-    category: 'designs',
-    tag: 'Freestyle Art',
-    barber: 'Leo Santana',
-    src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&auto=format&fit=crop&q=85',
-    thumb: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80',
-    description: 'Bespoke razor-etched geometric hair design with textured curls and sharp perimeter edges.'
+    title: 'High Taper Fade & Undercut',
+    category: 'fades',
+    tag: 'High Taper',
+    src: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=900&auto=format&fit=crop&q=85',
+    thumb: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&auto=format&fit=crop&q=80',
+    description: 'Crisp hairline and high taper blend with textured top pushed back.'
   },
   {
     id: 'curated-8',
-    title: 'Clean Beard Fade & Sharp Mustache Trim',
+    title: 'Beard Fade & Sharp Mustache Sculpt',
     category: 'beards',
     tag: 'Beard Fade',
-    barber: 'Marcus Vance',
     src: 'https://images.unsplash.com/photo-1567894340315-735d7c361db0?w=900&auto=format&fit=crop&q=85',
     thumb: 'https://images.unsplash.com/photo-1567894340315-735d7c361db0?w=600&auto=format&fit=crop&q=80',
     description: 'Flawless sideburn-to-beard fade transition with styled handlebar mustache accent.'
@@ -95,7 +87,7 @@ let currentFilteredItems = [];
 let currentLightboxIndex = 0;
 
 /**
- * Main Loader: Combines Supabase Storage uploads with curated cuts
+ * Main Loader
  */
 export async function loadGalleryImages() {
   const grid = document.querySelector('#gallery-grid');
@@ -103,7 +95,7 @@ export async function loadGalleryImages() {
 
   allGalleryItems = [...CURATED_GALLERY];
 
-  // Try to load any real uploads from Supabase Storage
+  // Supabase Storage dynamic fetch
   if (isSupabaseConfigured() && supabase) {
     try {
       const { data: files, error } = await supabase.storage.from(BUCKET).list('', {
@@ -114,29 +106,27 @@ export async function loadGalleryImages() {
       if (!error && files && files.length > 0) {
         const imageFiles = files.filter(f => /\.(jpg|jpeg|png|webp|gif|avif)$/i.test(f.name));
         
-        const uploadedItems = imageFiles.map((file, idx) => {
+        const uploadedItems = imageFiles.map((file) => {
           const { data: { publicUrl } } = supabase.storage.from(BUCKET).getPublicUrl(file.name);
           return {
             id: `supabase-${file.name}`,
             title: file.name.replace(/[-_]/g, ' ').replace(/\.[^/.]+$/, '').replace(/\d+/g, '').trim() || 'Latest Client Cut',
             category: 'fades',
-            tag: 'New Upload',
-            barber: 'The Master Barber',
+            tag: 'Studio Cut',
             src: publicUrl,
             thumb: publicUrl,
-            description: 'Freshly uploaded master cut directly from the Bearded Guys chair.'
+            description: 'Freshly uploaded master cut from Bearded Guys Barber Shop.'
           };
         });
 
-        // Prepend uploads to the top of the gallery
         allGalleryItems = [...uploadedItems, ...CURATED_GALLERY];
       }
     } catch (err) {
-      console.warn('[Gallery] Supabase fetch notice:', err);
+      console.warn('[Gallery] Supabase notice:', err);
     }
   }
 
-  // Also check local storage for any demo uploads created in admin
+  // Local demo uploads check
   const demoUploads = localStorage.getItem('bearded_demo_uploads');
   if (demoUploads) {
     try {
@@ -152,13 +142,10 @@ export async function loadGalleryImages() {
   setupLightbox();
 }
 
-/**
- * Filter handler
- */
 function setupGalleryFilters() {
   const filterBtns = document.querySelectorAll('.gallery-filter-btn');
   filterBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const cat = btn.getAttribute('data-filter') || 'all';
@@ -167,9 +154,6 @@ function setupGalleryFilters() {
   });
 }
 
-/**
- * Render items in the grid
- */
 function renderGalleryGrid(category = 'all') {
   const grid = document.querySelector('#gallery-grid');
   if (!grid) return;
@@ -182,10 +166,10 @@ function renderGalleryGrid(category = 'all') {
 
   if (currentFilteredItems.length === 0) {
     grid.innerHTML = `
-      <div class="gallery-empty-state">
-        <div class="empty-icon">✂️</div>
+      <div style="grid-column:1/-1; text-align:center; padding:3.5rem; color:var(--text-muted);">
+        <div style="font-size:2rem; margin-bottom:0.5rem;">✂️</div>
         <h3>No Photos in This Category Yet</h3>
-        <p>Stay tuned — our master barbers are constantly adding fresh cuts!</p>
+        <p>Stay tuned — fresh client cuts added regularly!</p>
       </div>
     `;
     return;
@@ -195,9 +179,8 @@ function renderGalleryGrid(category = 'all') {
 
   currentFilteredItems.forEach((item, index) => {
     const card = document.createElement('div');
-    card.className = 'gallery-card reveal-child';
+    card.className = 'gallery-card';
     card.setAttribute('role', 'listitem');
-    card.style.animationDelay = `${index * 0.06}s`;
 
     card.innerHTML = `
       <div class="gallery-img-container">
@@ -211,20 +194,13 @@ function renderGalleryGrid(category = 'all') {
         />
         <div class="gallery-badge">${item.tag || 'Master Cut'}</div>
         <div class="gallery-card-overlay">
-          <div class="gallery-overlay-top">
-            <span class="gallery-barber-tag">💈 ${item.barber || 'Master Barber'}</span>
-          </div>
-          <div class="gallery-overlay-bottom">
-            <h4 class="gallery-item-title">${item.title}</h4>
-            <p class="gallery-item-desc">${item.description || ''}</p>
-            <div class="gallery-card-action">
-              <span class="view-zoom-btn">
-                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-                </svg>
-                Zoom Cut
-              </span>
-            </div>
+          <h4 class="gallery-item-title">${item.title}</h4>
+          <p class="gallery-item-desc">${item.description || ''}</p>
+          <div class="gallery-zoom-cta">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+            Click to Zoom
           </div>
         </div>
       </div>
@@ -237,8 +213,6 @@ function renderGalleryGrid(category = 'all') {
     grid.appendChild(card);
   });
 }
-
-// ─── Lightbox Modal ──────────────────────────────────────────────────────────
 
 function setupLightbox() {
   if (document.getElementById('lightbox-modal')) return;
@@ -273,14 +247,14 @@ function setupLightbox() {
       </button>
 
       <div class="lightbox-media-wrapper">
-        <img id="lb-image" src="" alt="Barbershop Cut Preview" class="lightbox-img" />
+        <img id="lb-image" src="" alt="Barber Cut Preview" class="lightbox-img" />
         <div class="lightbox-caption">
           <div class="lb-caption-header">
-            <span class="lb-tag" id="lb-tag">Signature Cut</span>
+            <span class="lb-tag" id="lb-tag">Master Cut</span>
             <span class="lb-counter" id="lb-counter">1 of 8</span>
           </div>
-          <h3 id="lb-title" class="lb-title">Haircut Title</h3>
-          <p id="lb-desc" class="lb-desc">Detailed haircut description...</p>
+          <h3 id="lb-title" class="lb-title">Cut Title</h3>
+          <p id="lb-desc" class="lb-desc">Description...</p>
         </div>
       </div>
     </div>
@@ -288,7 +262,6 @@ function setupLightbox() {
 
   document.body.appendChild(lb);
 
-  // Wire events
   document.getElementById('lb-close-btn').addEventListener('click', closeLightbox);
   lb.querySelector('.lightbox-backdrop').addEventListener('click', closeLightbox);
   document.getElementById('lb-prev-btn').addEventListener('click', (e) => {
@@ -300,7 +273,6 @@ function setupLightbox() {
     navigateLightbox(1);
   });
 
-  // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (!lb.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
@@ -350,7 +322,7 @@ function updateLightboxContent() {
   };
 
   title.textContent = item.title;
-  desc.textContent = item.description || `Crafted by ${item.barber || 'Master Barber'} at Bearded Guys.`;
+  desc.textContent = item.description || 'Crafted at Bearded Guys Barber Shop.';
   tag.textContent = item.tag || 'Master Cut';
   counter.textContent = `${currentLightboxIndex + 1} of ${currentFilteredItems.length}`;
 }
