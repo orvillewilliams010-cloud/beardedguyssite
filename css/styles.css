@@ -597,6 +597,7 @@ section[id] {
   background: var(--ink);
   color: var(--cream-soft);
   border-top: none;
+  padding-bottom: clamp(2rem, 4vw, 3rem); /* Reduced from default section padding */
 }
 
 .section.gallery::before {
@@ -802,15 +803,20 @@ section[id] {
   margin-left: calc(50% - 50vw);
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 1rem 0 2rem;
+  padding: 1rem 0; /* Reduced bottom padding */
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+#gallery-grid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 .gallery-track {
   display: flex;
   align-items: center;
   width: max-content;
-  padding: 2rem 1rem;
+  padding: 1rem; /* Reduced vertical padding */
 }
 
 .gallery-card {
