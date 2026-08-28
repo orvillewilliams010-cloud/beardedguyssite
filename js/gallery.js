@@ -166,10 +166,9 @@ function renderGalleryGrid(category = 'all') {
 
   if (currentFilteredItems.length === 0) {
     grid.innerHTML = `
-      <div style="grid-column:1/-1; text-align:center; padding:3.5rem; color:var(--text-muted);">
-        <div style="font-size:2rem; margin-bottom:0.5rem;">✂️</div>
-        <h3>No Photos in This Category Yet</h3>
-        <p>Stay tuned — fresh client cuts added regularly!</p>
+      <div class="gallery-empty">
+        <h3>Nothing in this category yet</h3>
+        <p>New work gets added as it comes off the chairs, so check back soon.</p>
       </div>
     `;
     return;
@@ -183,7 +182,7 @@ function renderGalleryGrid(category = 'all') {
     card.setAttribute('role', 'listitem');
 
     card.innerHTML = `
-      <div class="gallery-img-container">
+      <div class="gallery-img-wrap">
         <img
           src="${item.thumb || item.src}"
           alt="${item.title}"
@@ -192,17 +191,10 @@ function renderGalleryGrid(category = 'all') {
           class="gallery-image"
           onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&auto=format&fit=crop&q=80';"
         />
-        <div class="gallery-badge">${item.tag || 'Master Cut'}</div>
-        <div class="gallery-card-overlay">
-          <h4 class="gallery-item-title">${item.title}</h4>
-          <p class="gallery-item-desc">${item.description || ''}</p>
-          <div class="gallery-zoom-cta">
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-            </svg>
-            Click to Zoom
-          </div>
-        </div>
+      </div>
+      <div class="gallery-caption">
+        <span class="gallery-item-tag">${item.tag || 'From the shop'}</span>
+        <h4 class="gallery-item-title">${item.title}</h4>
       </div>
     `;
 

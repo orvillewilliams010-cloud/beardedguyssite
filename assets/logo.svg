@@ -1,27 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 70" fill="none" role="img" aria-label="Bearded Guys Barber Shop">
-  <defs>
-    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F3E7C4" />
-      <stop offset="50%" stop-color="#D4AF37" />
-      <stop offset="100%" stop-color="#AA820A" />
-    </linearGradient>
-  </defs>
-
-  <!-- Clean Minimalist Monogram Icon -->
-  <g transform="translate(10, 8)">
-    <rect x="0" y="0" width="54" height="54" rx="10" fill="#141418" stroke="url(#goldGradient)" stroke-width="1.5" />
-    <!-- Straight Razor Outline Minimalist -->
-    <path d="M16 38 L38 16" stroke="url(#goldGradient)" stroke-width="2.5" stroke-linecap="round" />
-    <path d="M22 38 L38 22" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.8" />
-    <circle cx="16" cy="38" r="2.5" fill="url(#goldGradient)" />
-    <!-- Mini Scissors / Accent -->
-    <path d="M38 38 L27 27" stroke="url(#goldGradient)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2,2" opacity="0.6" />
-    <text x="27" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" font-weight="800" fill="url(#goldGradient)" text-anchor="middle" letter-spacing="1.5">EST.18</text>
-  </g>
-
-  <!-- Typography -->
-  <text x="76" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="800" letter-spacing="4" fill="url(#goldGradient)" text-transform="uppercase">EDMONTON • ALBERTA</text>
-  <text x="74" y="47" font-family="'Oswald', 'Syne', sans-serif" font-size="24" font-weight="700" letter-spacing="1.5" fill="#FFFFFF" text-transform="uppercase">BEARDED GUYS</text>
-  <text x="232" y="47" font-family="'Oswald', 'Syne', sans-serif" font-size="24" font-weight="700" letter-spacing="1.5" fill="url(#goldGradient)" text-transform="uppercase">BARBER</text>
-  <text x="76" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="600" letter-spacing="3.5" fill="#8E8E9F" text-transform="uppercase">SHOP &amp; GROOMING STUDIO</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Bearded Guys">
+  <!-- Wordless mark: straight razor in a double-ruled stamp -->
+  <rect x="2" y="2" width="60" height="60" stroke="#211c15" stroke-width="3"/>
+  <rect x="8" y="8" width="48" height="48" stroke="#8a6a33" stroke-width="1"/>
+  <!-- Blade and spine -->
+  <path d="M17 47 L45 19" stroke="#211c15" stroke-width="4.5" stroke-linecap="square"/>
+  <path d="M17 47 L31 33" stroke="#8a6a33" stroke-width="2" stroke-linecap="square"/>
+  <circle cx="17" cy="47" r="4" fill="#8a6a33"/>
 </svg>
