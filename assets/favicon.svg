@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Bearded Guys">
+  <rect width="64" height="64" fill="#211c15"/>
+  <rect x="9" y="9" width="46" height="46" stroke="#b99a5e" stroke-width="1" opacity="0.6"/>
+  <path d="M18 46 L46 18" stroke="#f0e9d8" stroke-width="4.5" stroke-linecap="square"/>
+  <path d="M18 46 L32 32" stroke="#b99a5e" stroke-width="2" stroke-linecap="square"/>
+  <circle cx="18" cy="46" r="4" fill="#b99a5e"/>
+</svg>

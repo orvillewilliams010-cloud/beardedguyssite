@@ -1,0 +1,32 @@
+# Supabase credentials — NEVER commit this file
+js/config.js
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Node (if ever added)
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Build artifacts
+dist/
+.netlify/
+
+# ZCode session files
+.zcode/

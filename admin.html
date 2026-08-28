@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Gallery &amp; Portfolio Management — Bearded Guys Admin</title>
+
+  <!-- Fonts & Favicon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg" />
+
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="./css/admin.css" />
+</head>
+<body>
+
+  <!-- ── Sidebar ───────────────────────────────────────────────────────── -->
+  <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin navigation">
+    <div class="sidebar-brand">
+      <a href="./index.html" aria-label="View website">
+        <img src="./assets/logo.svg" alt="Bearded Guys Logo" width="180" height="44" />
+      </a>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li>
+        <a href="#upload-section" class="sidebar-link active">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Upload &amp; Gallery
+        </a>
+      </li>
+      <li>
+        <a href="#settings-section" class="sidebar-link">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Supabase Settings
+        </a>
+      </li>
+      <li>
+        <a href="./index.html" target="_blank" rel="noopener" class="sidebar-link">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Live Website ↗
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="user-profile-box">
+        <div class="user-avatar-badge" id="admin-user-avatar">O</div>
+        <div style="overflow: hidden;">
+          <div style="font-size:0.7rem; text-transform:uppercase; color:var(--text-muted); font-weight:700;">Signed In</div>
+          <div class="user-email-text" id="admin-user-email">owner@beardedguys.com</div>
+        </div>
+      </div>
+
+      <button class="btn-signout" id="signout-btn" type="button">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- ── Main Workspace ────────────────────────────────────────────────── -->
+  <div class="admin-content-wrapper">
+    
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <button class="menu-toggle-btn" id="menu-toggle" aria-label="Toggle navigation">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1>EXECUTIVE GALLERY DASHBOARD</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <div id="supabase-status-badge" style="font-size:0.85rem; font-weight:600;">
+          <span style="color:var(--gold-primary)">Checking connection...</span>
+        </div>
+        <a href="./index.html" target="_blank" rel="noopener" class="btn-preview-site">
+          <span>👁️</span> View Live Site
+        </a>
+      </div>
+    </header>
+
+    <main class="admin-body">
+
+      <!-- ── Metrics Overview Grid ────────────────────────────────────── -->
+      <section class="metrics-row">
+        <div class="metric-card">
+          <span class="metric-title">Portfolio Cuts</span>
+          <div class="metric-value" id="metric-total-photos">8</div>
+          <span class="metric-sub">Live on public showcase</span>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-title">Cloud Storage</span>
+          <div class="metric-value" id="metric-supabase-status">Connected</div>
+          <span class="metric-sub">Supabase Bucket ('gallery')</span>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-title">Active Categories</span>
+          <div class="metric-value">4</div>
+          <span class="metric-sub">Fades, Beards, Classics, Designs</span>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-title">Last Upload</span>
+          <div class="metric-value" id="metric-last-upload" style="font-size:1.6rem;">Today</div>
+          <span class="metric-sub">Synced in real-time</span>
+        </div>
+      </section>
+
+      <!-- ── Supabase Quick Credentials Config Box ─────────────────────── -->
+      <section class="settings-box" id="settings-section">
+        <div class="settings-box-header">
+          <div class="settings-box-title">
+            <span>⚙️</span> Supabase Connection Settings
+          </div>
+          <span style="font-size:0.8rem; color:var(--text-muted);">
+            Stored securely in your local browser session
+          </span>
+        </div>
+
+        <form class="settings-form" id="supabase-settings-form">
+          <div class="input-field-group">
+            <label for="sb-url-input">Supabase Project URL</label>
+            <input
+              type="url"
+              id="sb-url-input"
+              class="field-input"
+              placeholder="https://xyzabcdef.supabase.co"
+              required
+            />
+          </div>
+
+          <div class="input-field-group">
+            <label for="sb-key-input">Supabase Anon Public Key</label>
+            <input
+              type="text"
+              id="sb-key-input"
+              class="field-input"
+              placeholder="eyJhbGciOiJIUzI1NiIsIn..."
+              required
+            />
+          </div>
+
+          <div class="input-field-group">
+            <label for="sb-bucket-input">Bucket Name</label>
+            <input
+              type="text"
+              id="sb-bucket-input"
+              class="field-input"
+              value="gallery"
+              placeholder="gallery"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn-choose-files" style="margin:0; padding:0.75rem 1.4rem;">
+            Save &amp; Connect
+          </button>
+        </form>
+      </section>
+
+      <!-- ── Upload New Photos ─────────────────────────────────────────── -->
+      <section class="upload-card-wrapper" id="upload-section">
+        <div class="upload-card-header">
+          <h2 class="upload-card-title">UPLOAD MASTER CUT PHOTOS</h2>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            Drop client photos here to immediately update your public portfolio gallery.
+          </p>
+        </div>
+
+        <div class="drop-zone-interactive" id="drop-zone">
+          <div class="dz-icon-art">📷</div>
+          <div class="dz-main-text">Drag &amp; Drop Client Photos Here</div>
+          <div class="dz-sub-text">or click to browse from your device (JPG, PNG, WebP)</div>
+          <button type="button" class="btn-choose-files" id="choose-files-btn">
+            Select Photos From Device
+          </button>
+        </div>
+
+        <input
+          type="file"
+          id="file-input"
+          accept="image/jpeg,image/png,image/webp,image/avif"
+          multiple
+          style="display: none;"
+        />
+
+        <div class="upload-meta-bar">
+          <div class="input-field-group">
+            <label for="upload-title-input">Cut Title (Optional)</label>
+            <input
+              type="text"
+              id="upload-title-input"
+              class="field-input"
+              placeholder="e.g. Mid Drop Skin Fade & Beard Sculpt"
+            />
+          </div>
+
+          <div class="input-field-group">
+            <label for="upload-cat-select">Category</label>
+            <select id="upload-cat-select" class="field-input" style="background:var(--bg-surface-2); color:#fff;">
+              <option value="fades">Fades &amp; Tapers</option>
+              <option value="beards">Beard Sculpting</option>
+              <option value="classics">Classics &amp; Textured Crops</option>
+              <option value="designs">Freestyle Art &amp; Hair Designs</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="upload-progress-wrapper" id="upload-progress-wrap">
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted);">
+            <span id="upload-status-text">Uploading photos to Supabase Storage...</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Live Portfolio Gallery Grid ───────────────────────────────── -->
+      <section>
+        <div class="admin-gallery-header">
+          <div>
+            <h2 class="admin-gallery-title">YOUR LIVE GALLERY</h2>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Hover over any image to delete or view details.</p>
+          </div>
+        </div>
+
+        <div class="admin-grid-container" id="admin-gallery-grid">
+          <!-- Loaded dynamically by js/admin.js -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Config & Engine -->
+  <script src="./js/config.js"></script>
+  <script type="module" src="./js/admin.js"></script>
+
+</body>
+</html>
