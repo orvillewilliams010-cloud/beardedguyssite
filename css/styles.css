@@ -589,6 +589,7 @@ section[id] {
   background: var(--rule);
 }
 
+.section.shop,
 .section.reviews {
   background: var(--paper-deep);
 }
@@ -635,6 +636,20 @@ section[id] {
 .section-head {
   max-width: 720px;
   margin-bottom: clamp(2.75rem, 5.5vw, 4.25rem);
+}
+
+.section-head-centered {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-head-centered .section-no-row {
+  justify-content: center;
+}
+
+.section-head-centered .section-no-side {
+  display: none;
 }
 
 .section-no-row {
@@ -692,74 +707,79 @@ section[id] {
 
 .menu-row {
   break-inside: avoid;
-  padding: 1.3rem 0 1.4rem;
+  padding: 1.5rem 0;
   border-bottom: 1px solid var(--rule-soft);
+  position: relative;
 }
 
 .menu-row.specialty {
   border-left: 2px solid var(--oxblood);
-  padding-left: 0.9rem;
+  padding-left: 1.1rem;
+  background: linear-gradient(90deg, rgba(109, 42, 37, 0.04) 0%, transparent 100%);
 }
 
 .menu-line {
   display: flex;
   align-items: baseline;
-  gap: 0.6rem;
+  gap: 0.75rem;
 }
 
 .menu-name {
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 500;
   line-height: 1.25;
   color: var(--ink);
+  letter-spacing: -0.01em;
 }
 
 .menu-time {
   font-family: var(--font-labels);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-left: 0.35rem;
+  color: var(--ink-soft);
+  margin-left: 0.45rem;
   white-space: nowrap;
 }
 
 .menu-note {
   display: inline-block;
   font-family: var(--font-labels);
-  font-size: 0.62rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--oxblood);
-  border: 1px solid currentColor;
-  padding: 0.08rem 0.45rem;
-  margin-left: 0.55rem;
-  vertical-align: 0.14em;
+  background: rgba(109, 42, 37, 0.06);
+  border: 1px solid rgba(109, 42, 37, 0.2);
+  padding: 0.15rem 0.55rem;
+  margin-left: 0.65rem;
+  vertical-align: 0.18em;
   white-space: nowrap;
 }
 
 .menu-dots {
   flex: 1;
   min-width: 1.5rem;
-  border-bottom: 1px dotted rgba(33, 28, 21, 0.4);
-  transform: translateY(-4px);
+  border-bottom: 2px dotted rgba(33, 28, 21, 0.25);
+  transform: translateY(-5px);
 }
 
 .menu-price {
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--brass-deep);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--ink);
   white-space: nowrap;
 }
 
 .menu-desc {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-top: 0.45rem;
+  color: var(--ink-soft);
   max-width: 95%;
 }
 
@@ -1041,70 +1061,49 @@ section[id] {
 }
 
 /* ── No. 3 · The shop ───────────────────────────────────────────────────── */
-.shop-grid {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(2.5rem, 6vw, 5rem);
-  align-items: center;
+.shop-copy-amplified {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.shop-visual {
-  position: relative;
-  padding-bottom: 3rem;
-}
-
-.shop-photo-main {
-  width: 86%;
-}
-
-.shop-photo-main .photo-frame img {
-  aspect-ratio: 4 / 5;
-}
-
-.shop-photo-sub {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 46%;
-}
-
-.shop-photo-sub .photo-frame {
-  box-shadow: 0 0 0 9px var(--paper);
-}
-
-.shop-photo-sub .photo-frame img {
-  aspect-ratio: 1 / 1;
-}
-
-.shop-points {
+.shop-points-amplified {
   list-style: none;
-  border-bottom: 1px solid var(--rule);
-}
-
-.shop-points li {
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  margin-top: 3.5rem;
   display: grid;
-  grid-template-columns: 2.2rem 1fr;
-  gap: 1.1rem;
-  padding: 1.15rem 0;
-  border-top: 1px solid var(--rule);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  padding: 2.5rem 0;
 }
 
-.shop-points svg {
-  color: var(--brass);
-  margin-top: 0.25rem;
+.shop-points-amplified li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1.25rem;
+  /* Removed border-bottom so it flows cleanly in the grid */
 }
 
-.shop-points h3 {
+.shop-points-amplified svg {
+  color: var(--brass-deep);
+  margin-top: 0.15rem;
+  width: 28px;
+  height: 28px;
+}
+
+.shop-points-amplified h3 {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--ink);
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
 }
 
-.shop-points p {
-  font-size: 0.92rem;
-  line-height: 1.6;
+.shop-points-amplified p {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
 }
 
 .shop-cta {
@@ -1112,6 +1111,7 @@ section[id] {
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 2rem;
+  justify-content: center;
 }
 
 /* ── No. 4 · Reviews — pull quotes ──────────────────────────────────────── */
@@ -1470,6 +1470,7 @@ section[id] {
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 992px) {
   .shop-grid,
+  .shop-points-amplified,
   .location-grid {
     grid-template-columns: 1fr;
   }
