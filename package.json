@@ -2,11 +2,10 @@
   "name": "barbershopsite",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js",
-    "build": "mkdir -p dist && cp -r index.html admin.html login.html css js assets dist/",
-    "start": "node server.js"
+    "dev": "serve -p 3000 .",
+    "build": "mkdir -p dist && cp -r index.html admin.html login.html css js assets dist/"
   },
-  "dependencies": {
-    "express": "^4.21.2"
+  "devDependencies": {
+    "serve": "^14.2.6"
   }
 }
