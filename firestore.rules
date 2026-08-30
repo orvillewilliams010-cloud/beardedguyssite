@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+    
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() { return isSignedIn() && request.auth.token.email == 'orvillewilliams010@gmail.com' && request.auth.token.email_verified == true; }
+
+    function isValidGalleryImage(data) {
+      return data.keys().hasAll(['title', 'category', 'src', 'thumb', 'createdAt', 'ownerId']) 
+        && data.title is string && data.title.size() <= 100
+        && data.category is string && data.category.size() <= 50
+        && data.src is string && data.src.size() <= 1048400
+        && data.thumb is string && data.thumb.size() <= 1048400
+        && data.createdAt == request.time
+        && data.ownerId == request.auth.uid
+        && (
+             !data.keys().hasAny(['tag', 'description']) 
+             || (
+                  (data.keys().hasAll(['tag']) ? (data.tag is string && data.tag.size() <= 50) : true)
+                  && (data.keys().hasAll(['description']) ? (data.description is string && data.description.size() <= 500) : true)
+                )
+           );
+    }
+
+    match /gallery/{imageId} {
+      allow read: if true;
+      allow create: if isAdmin() 
+                    && isValidId(imageId) 
+                    && isValidGalleryImage(incoming()) 
+                    && incoming().keys().size() >= 6 
+                    && incoming().keys().size() <= 8;
+      allow delete: if isAdmin() && existing().ownerId == request.auth.uid;
+      // No updates needed for simple gallery upload
+      allow update: if false;
+    }
+  }
+}

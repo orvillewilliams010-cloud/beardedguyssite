@@ -1,0 +1,26 @@
+{
+  "entities": {
+    "GalleryImage": {
+      "title": "Gallery Image",
+      "description": "An uploaded image for the barbershop portfolio",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 100 },
+        "category": { "type": "string", "maxLength": 50 },
+        "tag": { "type": "string", "maxLength": 50 },
+        "description": { "type": "string", "maxLength": 500 },
+        "src": { "type": "string" },
+        "thumb": { "type": "string" },
+        "createdAt": { "type": "timestamp" },
+        "ownerId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["title", "category", "src", "thumb", "createdAt", "ownerId"]
+    }
+  },
+  "firestore": {
+    "gallery/{imageId}": {
+      "schema": "GalleryImage",
+      "description": "Stores the uploaded portfolio images"
+    }
+  }
+}

@@ -1,16 +1,19 @@
 /**
  * Admin Dashboard & Gallery Manager Engine
- * Handles Supabase auth guard, live credentials update, image uploads, and delete operations.
+ * Handles Firebase auth guard, image uploads, base64 conversion, and delete operations.
  */
 
-import { supabase, BUCKET, isSupabaseConfigured, saveCredentials } from './supabase-client.js';
+import { initFirebase, db, auth, isFirebaseConfigured, handleFirestoreError, OperationType } from './firebase-client.js';
 import { requireAuth, logout, getSession } from './auth.js';
 import { CURATED_GALLERY } from './gallery.js';
+import { doc, setDoc, deleteDoc, getDocs, collection, query, orderBy, limit, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   // 1. Auth Guard
   const session = await requireAuth();
   if (!session) return;
+
+  await initFirebase();
 
   // 2. Populate User Profile
   const email = session.user?.email || 'owner@beardedguys.com';
@@ -19,114 +22,46 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (emailEl) emailEl.textContent = email;
   if (avatarEl) avatarEl.textContent = email.charAt(0).toUpperCase();
 
-  // 3. Populate Supabase credentials fields
-  const urlInput = document.getElementById('sb-url-input');
-  const keyInput = document.getElementById('sb-key-input');
-  const bucketInput = document.getElementById('sb-bucket-input');
-
-  if (urlInput) urlInput.value = localStorage.getItem('bearded_supabase_url') || (window.SUPABASE_CONFIG?.url) || '';
-  if (keyInput) keyInput.value = localStorage.getItem('bearded_supabase_key') || (window.SUPABASE_CONFIG?.anonKey) || '';
-  if (bucketInput) bucketInput.value = localStorage.getItem('bearded_supabase_bucket') || (window.SUPABASE_CONFIG?.bucket) || 'gallery';
-
-  // 4. Update Status Indicators
-  updateConnectionBadge();
-
-  // 5. Load Admin Gallery
+  // 3. Load Admin Gallery
   await loadAdminGallery();
 
-  // 6. Setup Event Handlers
+  // 4. Setup Event Handlers
   setupUploadZone();
-  setupSettingsForm();
 
   // Sign out button
   document.getElementById('signout-btn')?.addEventListener('click', logout);
-
-  // Mobile sidebar toggle
-  const sidebar = document.getElementById('admin-sidebar');
-  const toggleBtn = document.getElementById('menu-toggle');
-  toggleBtn?.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
-  });
 });
-
-/**
- * Check and display connection status
- */
-function updateConnectionBadge() {
-  const badge = document.getElementById('supabase-status-badge');
-  const countEl = document.getElementById('metric-supabase-status');
-  if (isSupabaseConfigured()) {
-    if (badge) {
-      badge.innerHTML = '<span style="color:var(--accent-green)">🟢 Supabase Live Cloud Connected</span>';
-    }
-    if (countEl) countEl.innerHTML = '<span style="color:var(--accent-green)">Connected</span>';
-  } else {
-    if (badge) {
-      badge.innerHTML = '<span style="color:var(--gold-primary)">🟡 Demo Mode (Enter keys below to enable Cloud Storage)</span>';
-    }
-    if (countEl) countEl.innerHTML = '<span style="color:var(--gold-primary)">Local/Demo</span>';
-  }
-}
-
-/**
- * Handle Settings Form (Saving Supabase keys in browser)
- */
-function setupSettingsForm() {
-  const form = document.getElementById('supabase-settings-form');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const url = document.getElementById('sb-url-input').value.trim();
-    const key = document.getElementById('sb-key-input').value.trim();
-    const bucket = document.getElementById('sb-bucket-input').value.trim() || 'gallery';
-
-    if (url && key) {
-      saveCredentials(url, key, bucket);
-      showToast('Credentials saved! Reloading dashboard...');
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    } else {
-      showToast('Please enter both Supabase URL and Anon Key.', true);
-    }
-  });
-}
 
 /**
  * Load and render images in admin grid
  */
 async function loadAdminGallery() {
   const grid = document.getElementById('admin-gallery-grid');
-  const countEl = document.getElementById('metric-total-photos');
-  const lastUploadEl = document.getElementById('metric-last-upload');
   if (!grid) return;
 
-  grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--gold-primary);">Loading gallery images...</div>';
+  grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem; font-family:var(--font-labels); font-size:1.2rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint);">Loading prints...</div>';
 
   let items = [];
 
-  // If Supabase is connected, fetch files
-  if (isSupabaseConfigured() && supabase) {
+  // If Firebase is connected, fetch files
+  if (isFirebaseConfigured() && db) {
+    const pathForGetDocs = 'gallery';
     try {
-      const { data: files, error } = await supabase.storage.from(BUCKET).list('', {
-        limit: 100,
-        sortBy: { column: 'created_at', order: 'desc' }
-      });
-
-      if (!error && files) {
-        const imageFiles = files.filter(f => /\.(jpg|jpeg|png|webp|gif|avif)$/i.test(f.name));
-        items = imageFiles.map(file => {
-          const { data: { publicUrl } } = supabase.storage.from(BUCKET).getPublicUrl(file.name);
-          return {
-            id: file.name,
-            name: file.name,
-            title: file.name.replace(/[-_]/g, ' ').replace(/\.[^/.]+$/, ''),
-            src: publicUrl,
-            isSupabase: true
-          };
+      const q = query(collection(db, pathForGetDocs), orderBy('createdAt', 'desc'), limit(100));
+      const querySnapshot = await getDocs(q);
+      
+      querySnapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        items.push({
+          id: docSnap.id,
+          name: data.title,
+          title: data.title || 'Client Cut',
+          src: data.src,
+          isFirebase: true
         });
-      }
+      });
     } catch (e) {
-      console.warn('Supabase storage error:', e);
+      handleFirestoreError(e, OperationType.GET, pathForGetDocs);
     }
   }
 
@@ -141,39 +76,32 @@ async function loadAdminGallery() {
     } catch (e) {}
   }
 
-  // If completely empty, show curated cuts for visual reference
-  if (items.length === 0) {
-    items = CURATED_GALLERY.map(c => ({
-      id: c.id,
-      name: c.title,
-      title: c.title,
-      src: c.thumb || c.src,
-      isCurated: true
-    }));
-  }
-
-  if (countEl) countEl.textContent = items.length;
-  if (lastUploadEl && items.length > 0) {
-    lastUploadEl.textContent = 'Today';
-  }
+  // Always include curated cuts for visual reference so they don't disappear
+  const curatedItems = CURATED_GALLERY.map(c => ({
+    id: c.id,
+    name: c.title,
+    title: c.title,
+    src: c.thumb || c.src,
+    isCurated: true
+  }));
+  items = [...items, ...curatedItems];
 
   grid.innerHTML = '';
 
   items.forEach(item => {
     const card = document.createElement('div');
-    card.className = 'admin-image-item';
+    card.className = 'admin-card';
     card.innerHTML = `
-      <img src="${item.src}" alt="${item.title}" loading="lazy" />
-      <div class="admin-item-overlay">
-        <button class="btn-delete-img" data-id="${item.id}" data-is-supabase="${Boolean(item.isSupabase)}" data-is-local="${Boolean(item.isLocal)}" type="button">
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-          Delete
+      <div class="admin-card-img-wrapper">
+        <img src="${item.src}" alt="${item.title}" loading="lazy" />
+        <button class="btn-delete-card" data-id="${item.id}" data-is-firebase="${Boolean(item.isFirebase)}" data-is-local="${Boolean(item.isLocal)}" type="button" aria-label="Delete Image">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
         </button>
-        <div class="admin-item-title">${item.title}</div>
       </div>
+      <div class="admin-card-title">${item.title}</div>
     `;
 
-    card.querySelector('.btn-delete-img')?.addEventListener('click', () => {
+    card.querySelector('.btn-delete-card')?.addEventListener('click', () => {
       deleteImage(item, card);
     });
 
@@ -185,17 +113,20 @@ async function loadAdminGallery() {
  * Delete an image
  */
 async function deleteImage(item, cardEl) {
+  if (item.isCurated) {
+    alert("Curated placeholder images cannot be deleted. They will naturally be replaced as you upload more of your own work.");
+    return;
+  }
+
   if (!confirm(`Are you sure you want to delete "${item.title}"?`)) return;
 
-  if (item.isSupabase && isSupabaseConfigured() && supabase) {
+  if (item.isFirebase && isFirebaseConfigured() && db) {
+    const pathForDelete = `gallery/${item.id}`;
     try {
-      const { error } = await supabase.storage.from(BUCKET).remove([item.id]);
-      if (error) {
-        showToast(`Delete failed: ${error.message}`, true);
-        return;
-      }
+      await deleteDoc(doc(db, 'gallery', item.id));
     } catch (err) {
-      showToast('Error removing from Supabase.', true);
+      handleFirestoreError(err, OperationType.DELETE, pathForDelete);
+      showToast('Error removing from server.', true);
       return;
     }
   } else if (item.isLocal) {
@@ -206,12 +137,36 @@ async function deleteImage(item, cardEl) {
 
   cardEl.remove();
   showToast('Photo removed from portfolio.');
-  
-  const countEl = document.getElementById('metric-total-photos');
-  if (countEl) {
-    const current = parseInt(countEl.textContent) || 1;
-    countEl.textContent = Math.max(0, current - 1);
-  }
+}
+
+async function resizeImage(file, maxDimension = 800) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+        if (width > maxDimension || height > maxDimension) {
+          if (width > height) {
+            height = Math.round((height * maxDimension) / width);
+            width = maxDimension;
+          } else {
+            width = Math.round((width * maxDimension) / height);
+            height = maxDimension;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.8));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 /**
@@ -224,8 +179,26 @@ function setupUploadZone() {
   const progressWrap = document.getElementById('upload-progress-wrap');
   const progressFill = document.getElementById('progress-bar-fill');
   const progressStatus = document.getElementById('upload-status-text');
+  
+  const startUploadBtn = document.getElementById('start-upload-btn');
+  const dzMainText = document.getElementById('dz-main-text');
+  const dzSubText = document.getElementById('dz-sub-text');
 
   if (!dropZone || !fileInput) return;
+  
+  let pendingFiles = [];
+
+  function updateFileSelection(files) {
+    const imageFiles = files.filter(f => f.type.startsWith('image/'));
+    if (imageFiles.length === 0) {
+      showToast('Please select valid image files (JPG, PNG, WebP).', true);
+      return;
+    }
+    pendingFiles = imageFiles;
+    if (dzMainText) dzMainText.textContent = `${pendingFiles.length} photo(s) selected`;
+    if (dzSubText) dzSubText.textContent = 'Fill out details below, then click Upload Print';
+    if (startUploadBtn) startUploadBtn.disabled = false;
+  }
 
   chooseBtn?.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -247,27 +220,29 @@ function setupUploadZone() {
     e.preventDefault();
     dropZone.classList.remove('dragover');
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      handleFileUploads(Array.from(e.dataTransfer.files));
+      updateFileSelection(Array.from(e.dataTransfer.files));
     }
   });
 
   fileInput.addEventListener('change', () => {
     if (fileInput.files.length > 0) {
-      handleFileUploads(Array.from(fileInput.files));
+      updateFileSelection(Array.from(fileInput.files));
+    }
+  });
+  
+  startUploadBtn?.addEventListener('click', () => {
+    if (pendingFiles.length > 0) {
+      handleFileUploads(pendingFiles);
     }
   });
 
-  async function handleFileUploads(files) {
-    const imageFiles = files.filter(f => f.type.startsWith('image/'));
-    if (imageFiles.length === 0) {
-      showToast('Please select valid image files (JPG, PNG, WebP).', true);
-      return;
-    }
+  async function handleFileUploads(imageFiles) {
+    if (imageFiles.length === 0) return;
 
     const titleInput = document.getElementById('upload-title-input');
     const categorySelect = document.getElementById('upload-cat-select');
     const customTitle = titleInput ? titleInput.value.trim() : '';
-    const category = categorySelect ? categorySelect.value : 'fades';
+    const customType = categorySelect && categorySelect.value.trim() ? categorySelect.value.trim() : 'Custom Cut';
 
     progressWrap?.classList.add('show');
     if (progressFill) progressFill.style.width = '10%';
@@ -277,60 +252,61 @@ function setupUploadZone() {
       const file = imageFiles[i];
       const percent = Math.round(((i + 1) / imageFiles.length) * 100);
 
-      if (isSupabaseConfigured() && supabase) {
-        // Upload directly to Supabase Storage Bucket
-        const ext = file.name.split('.').pop();
-        const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const base64Data = await resizeImage(file, 800);
+
+      if (isFirebaseConfigured() && db && auth.currentUser) {
+        const safeName = `img-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+        const pathForWrite = `gallery/${safeName}`;
 
         try {
-          const { data, error } = await supabase.storage.from(BUCKET).upload(safeName, file, {
-            cacheControl: '3600',
-            upsert: false,
-            contentType: file.type
+          await setDoc(doc(db, 'gallery', safeName), {
+            title: customTitle || file.name.replace(/\.[^/.]+$/, '').substring(0, 50),
+            category: customType,
+            tag: customType,
+            description: 'Freshly uploaded cut.',
+            src: base64Data,
+            thumb: base64Data,
+            createdAt: serverTimestamp(),
+            ownerId: auth.currentUser.uid
           });
-
-          if (error) {
-            console.error('Supabase upload error:', error);
-            showToast(`Upload error for ${file.name}: ${error.message}`, true);
-          }
         } catch (err) {
-          console.error(err);
+          handleFirestoreError(err, OperationType.WRITE, pathForWrite);
         }
       } else {
-        // Save to demo local state using FileReader
-        await new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const newItem = {
-              id: `local-${Date.now()}-${i}`,
-              title: customTitle || file.name.replace(/\.[^/.]+$/, ''),
-              category: category,
-              tag: 'New Upload',
-              barber: 'Master Barber',
-              src: e.target.result,
-              thumb: e.target.result,
-              description: 'Freshly uploaded cut.'
-            };
-            const existing = JSON.parse(localStorage.getItem('bearded_demo_uploads') || '[]');
-            existing.unshift(newItem);
-            localStorage.setItem('bearded_demo_uploads', JSON.stringify(existing));
-            resolve();
-          };
-          reader.readAsDataURL(file);
-        });
+        // Save to demo local state
+        const newItem = {
+          id: `local-${Date.now()}-${i}`,
+          title: customTitle || file.name.replace(/\.[^/.]+$/, ''),
+          category: customType,
+          tag: customType,
+          barber: 'Master Barber',
+          src: base64Data,
+          thumb: base64Data,
+          description: 'Freshly uploaded cut.'
+        };
+        const existing = JSON.parse(localStorage.getItem('bearded_demo_uploads') || '[]');
+        existing.unshift(newItem);
+        localStorage.setItem('bearded_demo_uploads', JSON.stringify(existing));
       }
 
       if (progressFill) progressFill.style.width = `${percent}%`;
     }
 
-    if (progressStatus) progressStatus.textContent = 'Upload Complete! Refreshing gallery...';
+    if (progressStatus) progressStatus.textContent = 'Upload Complete! Refreshing...';
 
     setTimeout(async () => {
       progressWrap?.classList.remove('show');
       if (progressFill) progressFill.style.width = '0%';
       fileInput.value = '';
       if (titleInput) titleInput.value = '';
-      showToast('Photos successfully uploaded to gallery!');
+      if (categorySelect) categorySelect.value = '';
+      
+      pendingFiles = [];
+      if (startUploadBtn) startUploadBtn.disabled = true;
+      if (dzMainText) dzMainText.textContent = 'Drop Client Photos Here';
+      if (dzSubText) dzSubText.textContent = 'or click to browse your files';
+
+      showToast('Photos successfully uploaded!');
       await loadAdminGallery();
     }, 900);
   }
@@ -348,7 +324,7 @@ function showToast(message, isError = false) {
     document.body.appendChild(toast);
   }
 
-  toast.style.borderColor = isError ? 'var(--accent-red)' : 'var(--gold-primary)';
+  toast.style.borderColor = isError ? 'var(--oxblood)' : 'var(--brass)';
   toast.innerHTML = isError ? `⚠️ ${message}` : `✓ ${message}`;
   toast.classList.add('active');
 
@@ -356,3 +332,4 @@ function showToast(message, isError = false) {
     toast.classList.remove('active');
   }, 4000);
 }
+

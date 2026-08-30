@@ -1,13 +1,15 @@
 /**
  * Gallery & Portfolio Engine
- * Loads dynamic images from Supabase Storage + curated showcase gallery
+ * Loads dynamic images from Firebase Firestore + curated showcase gallery
  * Supports category filtering, lazy-loading, and interactive lightbox modal.
  */
 
-import { supabase, BUCKET, isSupabaseConfigured } from './supabase-client.js';
+import { initFirebase, db, isFirebaseConfigured, handleFirestoreError, OperationType } from './firebase-client.js';
+import { collection, query, orderBy, limit, getDocs } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
 
 // Curated high-resolution barbershop cuts without mentioning individual barber names
 export const CURATED_GALLERY = [
+
   {
     id: 'curated-1',
     title: 'Precision Razor Skin Fade & Beard Lineup',
@@ -95,34 +97,34 @@ export async function loadGalleryImages() {
 
   allGalleryItems = [...CURATED_GALLERY];
 
-  // Supabase Storage dynamic fetch
-  if (isSupabaseConfigured() && supabase) {
+  const configured = await initFirebase();
+
+  // Firebase Firestore dynamic fetch
+  if (configured && db) {
+    const pathForGetDocs = 'gallery';
     try {
-      const { data: files, error } = await supabase.storage.from(BUCKET).list('', {
-        limit: 50,
-        sortBy: { column: 'created_at', order: 'desc' }
+      const q = query(collection(db, pathForGetDocs), orderBy('createdAt', 'desc'), limit(50));
+      const querySnapshot = await getDocs(q);
+      
+      const uploadedItems = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        uploadedItems.push({
+          id: doc.id,
+          title: data.title || 'Latest Client Cut',
+          category: data.category || 'fades',
+          tag: data.tag || 'Studio Cut',
+          src: data.src,
+          thumb: data.thumb || data.src,
+          description: data.description || 'Freshly uploaded master cut from Bearded Guys Barber Shop.'
+        });
       });
 
-      if (!error && files && files.length > 0) {
-        const imageFiles = files.filter(f => /\.(jpg|jpeg|png|webp|gif|avif)$/i.test(f.name));
-        
-        const uploadedItems = imageFiles.map((file) => {
-          const { data: { publicUrl } } = supabase.storage.from(BUCKET).getPublicUrl(file.name);
-          return {
-            id: `supabase-${file.name}`,
-            title: file.name.replace(/[-_]/g, ' ').replace(/\.[^/.]+$/, '').replace(/\d+/g, '').trim() || 'Latest Client Cut',
-            category: 'fades',
-            tag: 'Studio Cut',
-            src: publicUrl,
-            thumb: publicUrl,
-            description: 'Freshly uploaded master cut from Bearded Guys Barber Shop.'
-          };
-        });
-
+      if (uploadedItems.length > 0) {
         allGalleryItems = [...uploadedItems, ...CURATED_GALLERY];
       }
     } catch (err) {
-      console.warn('[Gallery] Supabase notice:', err);
+      handleFirestoreError(err, OperationType.GET, pathForGetDocs);
     }
   }
 

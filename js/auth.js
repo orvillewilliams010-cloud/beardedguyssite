@@ -1,23 +1,39 @@
 /**
  * Auth Helpers
- * Wraps Supabase Auth methods and handles redirects & fallback authentication.
+ * Wraps Firebase Auth methods and handles redirects & fallback authentication.
  */
 
-import { supabase, isSupabaseConfigured } from './supabase-client.js';
+import { initFirebase, db, auth, isFirebaseConfigured } from './firebase-client.js';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js';
 
-/**
- * Sign in with email and password.
- * @param {string} email
- * @param {string} password
- * @returns {{ data: object|null, error: object|null }}
- */
+export async function loginWithGoogle() {
+  const configured = await initFirebase();
+  if (!configured || !auth) {
+    return { data: null, error: { message: 'Firebase not configured.' } };
+  }
+
+  try {
+    const provider = new GoogleAuthProvider();
+    const userCredential = await signInWithPopup(auth, provider);
+    
+    // Check if the user is the authorized admin
+    if (userCredential.user.email !== 'orvillewilliams010@gmail.com') {
+      await signOut(auth);
+      return { data: null, error: { message: 'Unauthorized. Only the owner can access this portal.' } };
+    }
+    
+    return { data: { user: userCredential.user, session: { user: userCredential.user } }, error: null };
+  } catch (err) {
+    return { data: null, error: { message: err.message || 'Google Authentication failed.' } };
+  }
+}
+
 export async function loginWithEmail(email, password) {
-  if (!isSupabaseConfigured() || !supabase) {
-    // Demo Mode fallback authentication for instant testing if Supabase is not connected yet
+  const configured = await initFirebase();
+  if (!configured || !auth) {
     if (email && password && password.length >= 6) {
       const mockSession = {
         user: { email, id: 'demo-owner-id', user_metadata: { name: 'Barbershop Owner' } },
-        access_token: 'demo-token-123',
         is_demo: true
       };
       localStorage.setItem('bearded_demo_session', JSON.stringify(mockSession));
@@ -27,21 +43,19 @@ export async function loginWithEmail(email, password) {
   }
 
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    return { data, error };
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    return { data: { user: userCredential.user, session: { user: userCredential.user } }, error: null };
   } catch (err) {
     return { data: null, error: { message: err.message || 'Authentication failed.' } };
   }
 }
 
-/**
- * Sign out the current user and redirect to login.
- */
 export async function logout() {
   localStorage.removeItem('bearded_demo_session');
-  if (supabase) {
+  await initFirebase();
+  if (auth) {
     try {
-      await supabase.auth.signOut();
+      await signOut(auth);
     } catch (e) {
       console.warn('Sign out notice:', e);
     }
@@ -49,12 +63,9 @@ export async function logout() {
   window.location.href = './login.html';
 }
 
-/**
- * Get the current active session.
- * @returns {Promise<Session|null>}
- */
 export async function getSession() {
-  if (!isSupabaseConfigured() || !supabase) {
+  const configured = await initFirebase();
+  if (!configured || !auth) {
     const demo = localStorage.getItem('bearded_demo_session');
     if (demo) {
       try {
@@ -66,23 +77,19 @@ export async function getSession() {
     return null;
   }
 
-  try {
-    const { data: { session }, error } = await supabase.auth.getSession();
-    if (error || !session) {
-      // Check if fallback session exists
-      const demo = localStorage.getItem('bearded_demo_session');
-      return demo ? JSON.parse(demo) : null;
-    }
-    return session;
-  } catch (err) {
-    return null;
-  }
+  return new Promise((resolve) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      unsubscribe();
+      if (user) {
+        resolve({ user });
+      } else {
+        const demo = localStorage.getItem('bearded_demo_session');
+        resolve(demo ? JSON.parse(demo) : null);
+      }
+    });
+  });
 }
 
-/**
- * Auth guard — call this at the top of protected pages.
- * Redirects to login if no session is found.
- */
 export async function requireAuth() {
   const session = await getSession();
   if (!session) {
