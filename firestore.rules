@@ -12,7 +12,7 @@ service cloud.firestore {
     function incoming() { return request.resource.data; }
     function existing() { return resource.data; }
     function isSignedIn() { return request.auth != null; }
-    function isAdmin() { return isSignedIn() && request.auth.token.email == 'orvillewilliams010@gmail.com' && request.auth.token.email_verified == true; }
+    function isAdmin() { return isSignedIn() && request.auth.token.email == 'orvillewilliams010@gmail.com'; }
 
     function isValidGalleryImage(data) {
       return data.keys().hasAll(['title', 'category', 'src', 'thumb', 'createdAt', 'ownerId']) 

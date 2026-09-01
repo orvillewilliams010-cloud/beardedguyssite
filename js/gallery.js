@@ -148,8 +148,13 @@ function setupGalleryFilters() {
   // Filters removed for infinite carousel design
 }
 
+let galleryLimit = 12;
+
 function renderGalleryGrid(category = 'all') {
   const grid = document.querySelector('#gallery-grid');
+  const viewMoreActions = document.querySelector('#gallery-actions');
+  const viewMoreBtn = document.querySelector('#view-more-prints-btn');
+  
   if (!grid) return;
 
   if (category === 'all') {
@@ -158,6 +163,9 @@ function renderGalleryGrid(category = 'all') {
     currentFilteredItems = allGalleryItems.filter(item => item.category === category);
   }
 
+  // Sort by newest first (assuming createdAt exists or they are prepended)
+  // They are already prepended in fetch so it's fine.
+
   if (currentFilteredItems.length === 0) {
     grid.innerHTML = `
       <div class="gallery-empty">
@@ -165,22 +173,19 @@ function renderGalleryGrid(category = 'all') {
         <p>New work gets added as it comes off the chairs, so check back soon.</p>
       </div>
     `;
+    if (viewMoreActions) viewMoreActions.style.display = 'none';
     return;
   }
 
   grid.innerHTML = '';
   
-  // Create a track for the infinite marquee
+  // Create a track for the horizontal scrolling marquee
   const track = document.createElement('div');
   track.className = 'gallery-track';
   
-  // Render single set of items for scrollable carousel
-  const renderItems = currentFilteredItems;
+  const itemsToRender = currentFilteredItems.slice(0, galleryLimit);
 
-  renderItems.forEach((item, index) => {
-    // We only attach lightbox to the original set or we can attach to all
-    const originalIndex = index % currentFilteredItems.length;
-    
+  itemsToRender.forEach((item, index) => {
     const card = document.createElement('div');
     card.className = 'gallery-card';
     card.setAttribute('role', 'listitem');
@@ -200,13 +205,18 @@ function renderGalleryGrid(category = 'all') {
     `;
 
     card.addEventListener('click', () => {
-      openLightbox(originalIndex);
+      openLightbox(index); // Ensure it opens the correct index in currentFilteredItems
     });
 
     track.appendChild(card);
   });
   
   grid.appendChild(track);
+  
+  // Hide view more button since it's a scrolling section again
+  if (viewMoreActions) {
+    viewMoreActions.style.display = 'none';
+  }
 }
 
 function setupLightbox() {
