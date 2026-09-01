@@ -244,15 +244,9 @@
   </div>
 
   <!-- Config & Scripts -->
-  <script src="./js/config.js"></script>
+  
   <script type="module">
     import { loginWithGoogle, getSession } from './js/auth.js';
-
-    // Auto redirect if already logged in
-    const existing = await getSession();
-    if (existing) {
-      window.location.href = 'admin.html';
-    }
 
     // Form submission
     const form = document.getElementById('login-form');
@@ -291,6 +285,16 @@
       // Success
       window.location.href = 'admin.html';
     });
+
+    submitBtn.disabled = true;
+
+    // Auto redirect if already logged in
+    const existing = await getSession();
+    if (existing) {
+      window.location.href = 'admin.html';
+    } else {
+      submitBtn.disabled = false;
+    }
   </script>
 </body>
 </html>
