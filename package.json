@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "serve -p 3000 .",
-    "build": "mkdir -p dist && cp -r index.html admin.html login.html css js assets dist/"
+    "build": "mkdir -p dist && cp -r index.html admin.html login.html css js assets dist/ && cp firebase-applet-config.json dist/ || true"
   },
   "devDependencies": {
     "@firebase/eslint-plugin-security-rules": "^0.0.2",
