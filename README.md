@@ -34,7 +34,7 @@ bearded-guys-website/
 │   ├── gallery.js          ← Public gallery loader + lightbox
 │   └── admin.js            ← Admin upload / delete / CRUD
 ├── assets/
-│   └── logo.svg            ← Site logo
+│   └── brand/              ← Logo & favicon (logo.png, logo-badge.png, favicon.png, favicon.ico)
 ├── .gitignore
 ├── netlify.toml
 └── README.md
@@ -136,7 +136,7 @@ In Supabase → Storage → Policies, add:
 - **About photo**: In `index.html`, replace the Unsplash URL in the `<img>` tag
 - **Contact info**: Update phone, address, Instagram, and hours in `index.html`
 - **Services & Prices**: Edit the service cards in `index.html`
-- **Logo**: Replace `assets/logo.svg` with your own
+- **Logo**: Swap `assets/brand/logo.png` (master) and regenerate the badge/favicon derivatives
 
 ### Colors
 All design tokens are in `css/styles.css` under `:root`. Change `--clr-gold` to update the accent color sitewide.

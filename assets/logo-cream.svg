@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Bearded Guys">
-  <!-- Cream variant for dark (ink) surfaces -->
-  <rect x="2" y="2" width="60" height="60" stroke="#f0e9d8" stroke-width="3"/>
-  <rect x="8" y="8" width="48" height="48" stroke="#b99a5e" stroke-width="1"/>
-  <path d="M17 47 L45 19" stroke="#f0e9d8" stroke-width="4.5" stroke-linecap="square"/>
-  <path d="M17 47 L31 33" stroke="#b99a5e" stroke-width="2" stroke-linecap="square"/>
-  <circle cx="17" cy="47" r="4" fill="#b99a5e"/>
-</svg>

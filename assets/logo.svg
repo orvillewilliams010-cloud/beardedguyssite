@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Bearded Guys">
-  <!-- Wordless mark: straight razor in a double-ruled stamp -->
-  <rect x="2" y="2" width="60" height="60" stroke="#211c15" stroke-width="3"/>
-  <rect x="8" y="8" width="48" height="48" stroke="#8a6a33" stroke-width="1"/>
-  <!-- Blade and spine -->
-  <path d="M17 47 L45 19" stroke="#211c15" stroke-width="4.5" stroke-linecap="square"/>
-  <path d="M17 47 L31 33" stroke="#8a6a33" stroke-width="2" stroke-linecap="square"/>
-  <circle cx="17" cy="47" r="4" fill="#8a6a33"/>
-</svg>
