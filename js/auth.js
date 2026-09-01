@@ -4,7 +4,7 @@
  */
 
 import { initFirebase, db, auth, isFirebaseConfigured } from './firebase-client.js';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js';
+import { signInWithEmailAndPassword, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js';
 
 export async function loginWithGoogle() {
   const configured = await initFirebase();
@@ -13,16 +13,34 @@ export async function loginWithGoogle() {
   }
 
   try {
-    const provider = new GoogleAuthProvider();
-    const userCredential = await signInWithPopup(auth, provider);
-    
+    // Redirect flow: popups are blocked by many mobile and in-app browsers
+    await signInWithRedirect(auth, new GoogleAuthProvider());
+    return { data: null, error: null };
+  } catch (err) {
+    return { data: null, error: { message: err.message || 'Google Authentication failed.' } };
+  }
+}
+
+// Call on page load to finish a Google redirect sign-in
+export async function completeGoogleRedirect() {
+  const configured = await initFirebase();
+  if (!configured || !auth) {
+    return { data: null, error: null };
+  }
+
+  try {
+    const result = await getRedirectResult(auth);
+    if (!result || !result.user) {
+      return { data: null, error: null };
+    }
+
     // Check if the user is the authorized admin
-    if (userCredential.user.email !== 'orvillewilliams010@gmail.com') {
+    if (result.user.email !== 'orvillewilliams010@gmail.com') {
       await signOut(auth);
       return { data: null, error: { message: 'Unauthorized. Only the owner can access this portal.' } };
     }
-    
-    return { data: { user: userCredential.user, session: { user: userCredential.user } }, error: null };
+
+    return { data: { user: result.user, session: { user: result.user } }, error: null };
   } catch (err) {
     return { data: null, error: { message: err.message || 'Google Authentication failed.' } };
   }
